@@ -2,7 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Button from '@mui/material/Button';
-import CastleOutlinedIcon from '@mui/icons-material/CastleOutlined';
+import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
         variant='outlined'
         size='large'
         endIcon={
-          <CastleOutlinedIcon />
+          <CastleTwoToneIcon />
         }
       >
         Play Carcassonne!
