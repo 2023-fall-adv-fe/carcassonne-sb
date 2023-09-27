@@ -3,43 +3,37 @@ import logo from './logo.svg';
 import './App.css';
 import Button from '@mui/material/Button';
 import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
+import { Home } from './Home';
+import { Play } from './Play';
+import { Setup } from './Setup';
 
 import {
   createHashRouter,
   RouterProvider,
 } from "react-router-dom";
 
+
 const router = createHashRouter([
   {
     path: "/",
-    element: <div>Home</div>,
+    element: <Home />,
   },
   {
     path: "/setup",
-    element: <div>Setup</div>,
+    element: <Setup />,
   },
   {
     path: "/play",
-    element: <div>Play</div>,
+    element: <Play />,
   },
 ]);
 
-
-function App() {
+const App = () => {
   return (
     <div className="App">
       <RouterProvider router={router} />
-      {/* <Button
-        variant='outlined'
-        size='large'
-        endIcon={
-          <CastleTwoToneIcon />
-        }
-      >
-        Play Carcassonne!
-      </Button> */}
     </div>
   );
-}
+};
 
 export default App;
