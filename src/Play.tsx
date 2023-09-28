@@ -15,14 +15,17 @@ export const Play = () => {
             <Button
                 variant='outlined'
                 size='large'
+                startIcon={
+                    <CastleTwoToneIcon />
+                }
                 endIcon={
                     <CastleTwoToneIcon />
                 }
                 onClick={
-                    () => navigate(-2)
+                    () => navigate('/scoreboard')
                 }
-              >
-                Done
+            >
+                Finish Game
             </Button>
         </>
     );

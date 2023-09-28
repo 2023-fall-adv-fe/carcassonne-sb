@@ -3,14 +3,14 @@ import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { useNavigate } from "react-router-dom";
 
 
-export const Home = () => {
+export const Scoreboard = () => {
 
     const navigate = useNavigate();
 
     return (
         <>
             <h3>
-                Carcassone Scoreboard!
+                Game Totals
             </h3>
             <Button
                 variant='outlined'
@@ -22,25 +22,10 @@ export const Home = () => {
                     <CastleTwoToneIcon />
                 }
                 onClick={
-                    () => navigate('/setup')
+                    () => navigate(-3)
                 }
             >
-                Setup a Game
-            </Button>
-            <Button
-                variant='outlined'
-                size='large'
-                startIcon={
-                    <CastleTwoToneIcon />
-                }
-                endIcon={
-                    <CastleTwoToneIcon />
-                }
-                onClick={
-                    () => navigate('/stats')
-                }
-            >
-                Stats
+                Home
             </Button>
         </>
     );

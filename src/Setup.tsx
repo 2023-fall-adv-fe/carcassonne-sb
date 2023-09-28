@@ -15,12 +15,30 @@ export const Setup = () => {
             <Button
                 variant='outlined'
                 size='large'
+                startIcon={
+                    <CastleTwoToneIcon />
+                }
                 endIcon={
-            <CastleTwoToneIcon />
-            }
-            onClick={
-                () => navigate('/play')
-            }
+                    <CastleTwoToneIcon />
+                }
+                onClick={
+                    () => navigate(-1)
+                }
+            >
+                Home
+            </Button>
+            <Button
+                variant='outlined'
+                size='large'
+                startIcon={
+                    <CastleTwoToneIcon />
+                }
+                endIcon={
+                    <CastleTwoToneIcon />
+                }
+                onClick={
+                    () => navigate('/play')
+                }
             >
                 Start the Game
             </Button>

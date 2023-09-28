@@ -6,6 +6,8 @@ import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { Home } from './Home';
 import { Play } from './Play';
 import { Setup } from './Setup';
+import { Scoreboard } from './Scoreboard';
+import { Stats } from './Stats';
 
 import {
   createHashRouter,
@@ -19,12 +21,20 @@ const router = createHashRouter([
     element: <Home />,
   },
   {
+    path: "/stats",
+    element: <Stats />,
+  },
+  {
     path: "/setup",
     element: <Setup />,
   },
   {
     path: "/play",
     element: <Play />,
+  },
+  {
+    path: "/scoreboard",
+    element: <Scoreboard />,
   },
 ]);
 
