@@ -10,7 +10,7 @@ export const Scoreboard = () => {
     return (
         <>
             <h3>
-                Game Totals
+                Scoreboard
             </h3>
             <Button
                 variant='outlined'

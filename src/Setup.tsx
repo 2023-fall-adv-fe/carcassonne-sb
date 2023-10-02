@@ -1,16 +1,25 @@
 import Button from '@mui/material/Button';
 import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { useNavigate } from "react-router-dom";
+import { FC, useState } from 'react';
 
 
-export const Setup = () => {
+interface SetupProps {
+    num: number;
+    setNum: any;
+};
+
+export const Setup: FC<SetupProps> = ({num, setNum}) => {
 
     const navigate = useNavigate();
+
+    //let num = 1;
+    //const [num, setNum] = useState(1);
 
     return (
         <>
             <h3>
-                Setup a Game of Carcassone!
+                Setup a Game of Carcassone! ({num})
             </h3>
             <Button
                 variant='outlined'
@@ -37,7 +46,14 @@ export const Setup = () => {
                     <CastleTwoToneIcon />
                 }
                 onClick={
-                    () => navigate('/play')
+                    //() => navigate('/play')
+                    () => {
+                        //setNum(num + 1);
+                        //console.log(num);
+
+                        setNum(num + 1);
+                        navigate('/play');
+                    }
                 }
             >
                 Start the Game

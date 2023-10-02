@@ -1,8 +1,4 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Button from '@mui/material/Button';
-import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { Home } from './Home';
 import { Play } from './Play';
 import { Setup } from './Setup';
@@ -13,32 +9,42 @@ import {
   createHashRouter,
   RouterProvider,
 } from "react-router-dom";
+import { useState } from 'react';
 
 
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/stats",
-    element: <Stats />,
-  },
-  {
-    path: "/setup",
-    element: <Setup />,
-  },
-  {
-    path: "/play",
-    element: <Play />,
-  },
-  {
-    path: "/scoreboard",
-    element: <Scoreboard />,
-  },
-]);
+
 
 const App = () => {
+
+  const [num, setNum] = useState(1);
+
+
+  const router = createHashRouter([
+    {
+      path: "/",
+      element: <Home />,
+    },
+    {
+      path: "/stats",
+      element: <Stats />,
+    },
+    {
+      path: "/setup",
+      element: <Setup 
+        num={num}
+        setNum={setNum}
+      />,
+    },
+    {
+      path: "/play",
+      element: <Play />,
+    },
+    {
+      path: "/scoreboard",
+      element: <Scoreboard />,
+    },
+  ]);
+
   return (
     <div className="App">
       <RouterProvider router={router} />
