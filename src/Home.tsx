@@ -9,9 +9,6 @@ export const Home = () => {
 
     return (
         <>
-            <h3>
-                Carcassone Scoreboard!
-            </h3>
             <Button
                 variant='outlined'
                 size='large'

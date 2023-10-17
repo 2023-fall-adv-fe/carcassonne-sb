@@ -10,6 +10,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { useState } from 'react';
+import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 
 
 
@@ -47,7 +48,40 @@ const App = () => {
 
   return (
     <div className="App">
+      <Box
+        sx={{
+          flexGrow: 1
+        }}
+      >
+        <AppBar
+          position='static'
+          sx={{
+            overflow: 'hidden'
+            , bgcolor: 'gainsboro'
+          }}
+        >
+          <Toolbar>
+            <Typography
+              variant='h5'
+              color={Math.random() > 0.5 ? 'primary' : 'secondary'}
+              sx={{
+                opacity: 0.75
+              }}
+            >
+              Carcassonne Scoreboard
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <Box
+        sx={{
+          pl: 1
+          , pr: 1
+          , textAlign: 'left'
+        }}
+      >
       <RouterProvider router={router} />
+      </Box>
     </div>
   );
 };
