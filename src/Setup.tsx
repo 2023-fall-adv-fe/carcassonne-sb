@@ -19,7 +19,7 @@ export const Setup: FC<SetupProps> = ({num, setNum}) => {
     return (
         <>
             <h3>
-                Setup a Game of Carcassone! ({num})
+                Setup a Game of Carcassone!
             </h3>
             <Button
                 variant='outlined'

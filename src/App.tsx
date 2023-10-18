@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { GameResult, getWinningPercentageDisplay } from './game-results';
+import { GameResult, getWinningPercentageDisplay, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts } from './game-results';
 
 const dummyGameResults: GameResult[] = [
   {
@@ -46,7 +46,9 @@ const App = () => {
     },
     {
       path: "/stats",
-      element: <Stats winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)} />,
+      element: <Stats
+          winningPercentageDisplay={getWinningPercentageDisplay(gameResults)}
+          generalGameTimeFacts={ getGeneralGameTimeFacts(gameResults, Date.now())} />,
     },
     {
       path: "/setup",

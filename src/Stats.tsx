@@ -10,16 +10,20 @@ import {
     , TableCell
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { WinningPercentageDisplay } from './game-results';
+import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay } from './game-results';
 import { FC } from 'react';
 
 
 
 interface StatsProps {
     winningPercentageDisplay: WinningPercentageDisplay
+    , generalGameTimeFacts: GeneralGameTimeFactsDisplay
 }
 
-export const Stats: FC<StatsProps> = ({winningPercentageDisplay}) => {
+export const Stats: FC<StatsProps> = ({
+    winningPercentageDisplay
+    , generalGameTimeFacts
+}) => {
 
     const navigate = useNavigate();
 
@@ -150,14 +154,14 @@ export const Stats: FC<StatsProps> = ({winningPercentageDisplay}) => {
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Total Games
+                                            Shortest Game
                                         </Typography>
                                     </TableCell>
                                     <TableCell                                >
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Placeholder
+                                            {generalGameTimeFacts.shortestGame}
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
@@ -166,14 +170,14 @@ export const Stats: FC<StatsProps> = ({winningPercentageDisplay}) => {
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Winning %
+                                            Longest Game
                                         </Typography>
                                     </TableCell>
                                     <TableCell                                >
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Placeholder
+                                            {generalGameTimeFacts.longestGame}
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
@@ -210,14 +214,14 @@ export const Stats: FC<StatsProps> = ({winningPercentageDisplay}) => {
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Total Games
+                                            Last Played
                                         </Typography>
                                     </TableCell>
                                     <TableCell                                >
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Placeholder
+                                            {generalGameTimeFacts.lastPlayed}
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
