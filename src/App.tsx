@@ -11,13 +11,32 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { GameResult, getWinningPercentageDisplay } from './game-results';
 
-
-
+const dummyGameResults: GameResult[] = [
+  {
+      won: true
+      , start: "2023-10-01T17:40:46.333Z"
+      , end: "2023-10-01T17:53:27.123Z"
+  }
+  , {
+      won: false
+      , start: "2023-10-09T17:55:46.333Z"
+      , end: "2023-10-09T18:00:27.123Z"
+  }
+];
 
 const App = () => {
 
   const [num, setNum] = useState(1);
+  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+
+  const addNewGameResult = (newGameResult: GameResult) => setGameResults(
+    [
+      ...gameResults
+      , newGameResult
+    ]
+  );
 
 
   const router = createHashRouter([
@@ -27,7 +46,7 @@ const App = () => {
     },
     {
       path: "/stats",
-      element: <Stats />,
+      element: <Stats winningPercentageDisplay = {getWinningPercentageDisplay(gameResults)} />,
     },
     {
       path: "/setup",
@@ -38,7 +57,7 @@ const App = () => {
     },
     {
       path: "/play",
-      element: <Play />,
+      element: <Play addNewGameResult={addNewGameResult} />,
     },
     {
       path: "/scoreboard",

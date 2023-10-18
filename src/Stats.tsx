@@ -10,9 +10,16 @@ import {
     , TableCell
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
+import { WinningPercentageDisplay } from './game-results';
+import { FC } from 'react';
 
 
-export const Stats = () => {
+
+interface StatsProps {
+    winningPercentageDisplay: WinningPercentageDisplay
+}
+
+export const Stats: FC<StatsProps> = ({winningPercentageDisplay}) => {
 
     const navigate = useNavigate();
 
@@ -90,7 +97,7 @@ export const Stats = () => {
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Placeholder
+                                            {winningPercentageDisplay.totalGames}
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
@@ -106,7 +113,7 @@ export const Stats = () => {
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Placeholder
+                                            {winningPercentageDisplay.winningPercentage}
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
@@ -358,61 +365,7 @@ export const Stats = () => {
                     xs={12}
                     md={6}
                 >
-                    <Paper
-                        elevation={3}
-                        sx={{
-                            overflow: 'hidden'
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                fontSize: 20
-                                , ml: 3
-                                , mt: 3
-                                , mb: 3
-                            }}
-                            color='text.disabled'
-                            gutterBottom
-                        >
-                            GENERAL
-                        </Typography>
-                        <Table>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Total Games
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Placeholder
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Winning %
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Placeholder
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </Paper>
+                   
                 </Grid>
             </Grid>
         </>

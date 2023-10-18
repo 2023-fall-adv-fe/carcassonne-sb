@@ -1,18 +1,52 @@
 import Button from '@mui/material/Button';
 import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { useNavigate } from "react-router-dom";
+import { GameResult } from './game-results';
+import { FC } from 'react';
 
 
-export const Play = () => {
+interface PlayProps {
+    addNewGameResult: (r: GameResult) => void;
+};
 
-    const navigate = useNavigate();
+export const Play: FC<PlayProps> = ({addNewGameResult}) => {
+
+    const nav = useNavigate();
+
+    const gameOver = (won: boolean) => {
+        addNewGameResult({
+            won: won
+            , start: ""
+            , end: ""
+        });
+        nav(-2);
+    };
 
     return (
         <>
-            <h3>
-                Play &amp; Collect Data
-            </h3>
-            <Button
+        <h3>
+            Play &amp; Collect Data
+        </h3>
+        <Button
+            variant="outlined"
+            size="large"
+            onClick={
+                () => gameOver(true)
+            }
+        >
+            I Won
+        </Button>
+        <Button
+            variant="outlined"
+            size="large"
+            onClick={
+                () => gameOver(false)
+            }
+        >
+            I Lost
+        </Button>
+
+            {/* <Button
                 variant='outlined'
                 size='large'
                 startIcon={
@@ -26,7 +60,7 @@ export const Play = () => {
                 }
             >
                 Finish Game
-            </Button>
+            </Button> */}
         </>
     );
 };
