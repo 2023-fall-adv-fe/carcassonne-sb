@@ -30,8 +30,19 @@ export const Play: FC<PlayProps> = ({addNewGameResult}) => {
             Play &amp; Collect Data
         </h3>
         <Button
-            variant="outlined"
+            variant="contained"
+            color='success'
             size="large"
+            sx={{
+                pt: 2
+                , pb: 2
+                , mt: 3
+                , mb: 3
+                , width: {
+                    xs: '100%'
+                    , md: 'inherit'
+                }
+            }}
             onClick={
                 () => gameOver(true)
             }
@@ -39,8 +50,19 @@ export const Play: FC<PlayProps> = ({addNewGameResult}) => {
             I Won
         </Button>
         <Button
-            variant="outlined"
+            variant="contained"
+            color='error'
             size="large"
+            sx={{
+                pt: 2
+                , pb: 2
+                , mt: 3
+                , mb: 3
+                , width: {
+                    xs: '100%'
+                    , md: 'inherit'
+                }
+            }}
             onClick={
                 () => gameOver(false)
             }

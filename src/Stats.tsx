@@ -8,6 +8,7 @@ import {
     , TableBody
     , TableRow
     , TableCell
+    , Box
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
 import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay } from './game-results';
@@ -87,7 +88,17 @@ export const Stats: FC<StatsProps> = ({
                         >
                             GENERAL
                         </Typography>
-                        <Table>
+                        <Box
+                        sx={{
+                            pl: 1
+                            , pr: 1
+                        }}
+                    >
+                        <Table
+                            sx={{
+                                mt: 0
+                            }}
+                        >
                             <TableBody>
                                 <TableRow>
                                     <TableCell>
@@ -97,7 +108,7 @@ export const Stats: FC<StatsProps> = ({
                                             Total Games
                                         </Typography>
                                     </TableCell>
-                                    <TableCell                                >
+                                    <TableCell>
                                         <Typography
                                             fontSize={20}
                                         >
@@ -105,7 +116,13 @@ export const Stats: FC<StatsProps> = ({
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
-                                <TableRow>
+                                <TableRow
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        }
+                                    }}
+                                >
                                     <TableCell>
                                         <Typography
                                             fontSize={20}
@@ -113,103 +130,21 @@ export const Stats: FC<StatsProps> = ({
                                             Winning %
                                         </Typography>
                                     </TableCell>
-                                    <TableCell                                >
+                                    <TableCell>
                                         <Typography
                                             fontSize={20}
                                         >
                                             {winningPercentageDisplay.winningPercentage}
                                         </Typography>
                                     </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </Paper>
-                </Grid>
-                <Grid
-                    xs={12}
-                    md={6}
-                >
-                    <Paper
-                        elevation={3}
-                        sx={{
-                            overflow: 'hidden'
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                fontSize: 20
-                                , ml: 3
-                                , mt: 3
-                                , mb: 3
-                            }}
-                            color='text.disabled'
-                            gutterBottom
-                        >
-                            GENERAL
-                        </Typography>
-                        <Table>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Shortest Game
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            {generalGameTimeFacts.shortestGame}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Longest Game
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            {generalGameTimeFacts.longestGame}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </Paper>
-                </Grid>
-                <Grid
-                    xs={12}
-                    md={6}
-                >
-                    <Paper
-                        elevation={3}
-                        sx={{
-                            overflow: 'hidden'
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                fontSize: 20
-                                , ml: 3
-                                , mt: 3
-                                , mb: 3
-                            }}
-                            color='text.disabled'
-                            gutterBottom
-                        >
-                            GENERAL
-                        </Typography>
-                        <Table>
-                            <TableBody>
-                                <TableRow>
+                                </TableRow>                        
+                                <TableRow
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        }
+                                    }}
+                                >
                                     <TableCell>
                                         <Typography
                                             fontSize={20}
@@ -217,161 +152,64 @@ export const Stats: FC<StatsProps> = ({
                                             Last Played
                                         </Typography>
                                     </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            {generalGameTimeFacts.lastPlayed}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
                                     <TableCell>
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Winning %
+                                            {generalGameTimeFacts.lastPlayed} ago
                                         </Typography>
                                     </TableCell>
-                                    <TableCell                                >
+                                </TableRow> 
+                                <TableRow
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        }
+                                    }}
+                                >
+                                    <TableCell>
                                         <Typography
                                             fontSize={20}
                                         >
-                                            Placeholder
+                                            Shortest Game
                                         </Typography>
                                     </TableCell>
-                                </TableRow>
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            {generalGameTimeFacts.shortestGame}
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow> 
+                                <TableRow
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        }
+                                    }}
+                                >
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            Longest Game
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            {generalGameTimeFacts.longestGame}
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow> 
                             </TableBody>
                         </Table>
-                    </Paper>
-                </Grid>
-                <Grid
-                    xs={12}
-                    md={6}
-                >
-                    <Paper
-                        elevation={3}
-                        sx={{
-                            overflow: 'hidden'
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                fontSize: 20
-                                , ml: 3
-                                , mt: 3
-                                , mb: 3
-                            }}
-                            color='text.disabled'
-                            gutterBottom
-                        >
-                            GENERAL
-                        </Typography>
-                        <Table>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Total Games
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Placeholder
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Winning %
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Placeholder
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </Paper>
-                </Grid>
-                <Grid
-                    xs={12}
-                    md={6}
-                >
-                    <Paper
-                        elevation={3}
-                        sx={{
-                            overflow: 'hidden'
-                        }}
-                    >
-                        <Typography
-                            sx={{
-                                fontSize: 20
-                                , ml: 3
-                                , mt: 3
-                                , mb: 3
-                            }}
-                            color='text.disabled'
-                            gutterBottom
-                        >
-                            GENERAL
-                        </Typography>
-                        <Table>
-                            <TableBody>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Total Games
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Placeholder
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                                <TableRow>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Winning %
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell                                >
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Placeholder
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>
-                            </TableBody>
-                        </Table>
-                    </Paper>
-                </Grid>
-                <Grid
-                    xs={12}
-                    md={6}
-                >
-                   
-                </Grid>
+                    </Box>
+                </Paper>
             </Grid>
+      </Grid>
         </>
     );
 };

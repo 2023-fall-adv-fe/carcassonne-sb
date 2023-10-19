@@ -77,16 +77,17 @@ const App = () => {
         <AppBar
           position='static'
           sx={{
-            overflow: 'hidden'
-            , bgcolor: 'gainsboro'
+            overflow: 'hidden',
+            bgcolor: '#042B61',
           }}
         >
           <Toolbar>
             <Typography
               variant='h5'
-              color={Math.random() > 0.5 ? 'primary' : 'secondary'}
+              //color={Math.random() > 0.5 ? 'E8CD8A' : 'E8CD8A'}
               sx={{
-                opacity: 0.75
+                opacity: 0.75,
+                color: '#E8CD8A'
               }}
             >
               Carcassonne Scoreboard

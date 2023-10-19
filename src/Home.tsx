@@ -10,8 +10,18 @@ export const Home = () => {
     return (
         <>
             <Button
-                variant='outlined'
+                variant='contained'
                 size='large'
+                sx={{
+                    pt: 2
+                    , pb: 2
+                    , mt: 6
+                    , mb: 3
+                    , width: {
+                        xs: '100%'
+                        , md: 'inherit'
+                    }
+                }}
                 startIcon={
                     <CastleTwoToneIcon />
                 }
@@ -25,8 +35,18 @@ export const Home = () => {
                 Setup a Game
             </Button>
             <Button
-                variant='outlined'
+                variant='contained'
                 size='large'
+                sx={{
+                    pt: 2
+                    , pb: 2
+                    , mt: 3
+                    , mb: 3
+                    , width: {
+                        xs: '100%'
+                        , md: 'inherit'
+                    }
+                }}
                 startIcon={
                     <CastleTwoToneIcon />
                 }

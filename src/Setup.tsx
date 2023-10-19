@@ -22,8 +22,18 @@ export const Setup: FC<SetupProps> = ({num, setNum}) => {
                 Setup a Game of Carcassone!
             </h3>
             <Button
-                variant='outlined'
+                variant='contained'
                 size='large'
+                sx={{
+                    pt: 2
+                    , pb: 2
+                    , mt: 6
+                    , mb: 3
+                    , width: {
+                        xs: '100%'
+                        , md: 'inherit'
+                    }
+                }}
                 startIcon={
                     <CastleTwoToneIcon />
                 }
@@ -37,8 +47,18 @@ export const Setup: FC<SetupProps> = ({num, setNum}) => {
                 Home
             </Button>
             <Button
-                variant='outlined'
+                variant='contained'
                 size='large'
+                sx={{
+                    pt: 2
+                    , pb: 2
+                    , mt: 3
+                    , mb: 3
+                    , width: {
+                        xs: '100%'
+                        , md: 'inherit'
+                    }
+                }}
                 startIcon={
                     <CastleTwoToneIcon />
                 }
