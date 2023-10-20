@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { useNavigate } from "react-router-dom";
 import { FC, useState } from 'react';
+import { Players } from './Players';
 
 
 interface SetupProps {
@@ -18,9 +19,10 @@ export const Setup: FC<SetupProps> = ({num, setNum}) => {
 
     return (
         <>
-            <h3>
+            <h2>
                 Setup a Game of Carcassone!
-            </h3>
+            </h2>
+            <Players name={''} />
             <Button
                 variant='contained'
                 size='large'
@@ -29,6 +31,7 @@ export const Setup: FC<SetupProps> = ({num, setNum}) => {
                     , pb: 2
                     , mt: 6
                     , mb: 3
+                    , mr: 4
                     , width: {
                         xs: '100%'
                         , md: 'inherit'
@@ -52,7 +55,7 @@ export const Setup: FC<SetupProps> = ({num, setNum}) => {
                 sx={{
                     pt: 2
                     , pb: 2
-                    , mt: 3
+                    , mt: 6
                     , mb: 3
                     , width: {
                         xs: '100%'

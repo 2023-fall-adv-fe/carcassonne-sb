@@ -17,6 +17,7 @@ export const Home = () => {
                     , pb: 2
                     , mt: 6
                     , mb: 3
+                    , mr: 4
                     , width: {
                         xs: '100%'
                         , md: 'inherit'
@@ -40,7 +41,7 @@ export const Home = () => {
                 sx={{
                     pt: 2
                     , pb: 2
-                    , mt: 3
+                    , mt: 6
                     , mb: 3
                     , width: {
                         xs: '100%'
