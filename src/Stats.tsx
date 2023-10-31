@@ -11,19 +11,19 @@ import {
     , Box
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { GeneralGameTimeFactsDisplay, WinningPercentageDisplay } from './game-results';
+import { GeneralGameTimeFactsDisplay } from './game-results';
 import { FC } from 'react';
 
 
 
 interface StatsProps {
-    winningPercentageDisplay: WinningPercentageDisplay
-    , generalGameTimeFacts: GeneralGameTimeFactsDisplay
+    //winningPercentageDisplay: WinningPercentageDisplay
+    generalGameTimeFacts: GeneralGameTimeFactsDisplay
 }
 
 export const Stats: FC<StatsProps> = ({
-    winningPercentageDisplay
-    , generalGameTimeFacts
+    //winningPercentageDisplay
+    generalGameTimeFacts
 }) => {
 
     const navigate = useNavigate();
@@ -112,11 +112,11 @@ export const Stats: FC<StatsProps> = ({
                                         <Typography
                                             fontSize={20}
                                         >
-                                            {winningPercentageDisplay.totalGames}
+                                            {generalGameTimeFacts.totalGames}
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
-                                <TableRow
+                                {/* <TableRow
                                     sx={{
                                         '&:last-child td, &:last-child th': {
                                             border: 0,
@@ -137,7 +137,7 @@ export const Stats: FC<StatsProps> = ({
                                             {winningPercentageDisplay.winningPercentage}
                                         </Typography>
                                     </TableCell>
-                                </TableRow>                        
+                                </TableRow>                         */}
                                 <TableRow
                                     sx={{
                                         '&:last-child td, &:last-child th': {

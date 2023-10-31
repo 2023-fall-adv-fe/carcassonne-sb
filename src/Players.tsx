@@ -1,8 +1,9 @@
 import { useState } from "react";
-
+import { Button, TextField, List, ListItem, ListItemText, Checkbox } from "@mui/material";
 
 interface Player {
     name: string;
+    selected: boolean;
 }
 
 export const Players: React.FC<Player> = () => {
@@ -14,11 +15,24 @@ export const Players: React.FC<Player> = () => {
         
 
         const newPlayer: Player = {
-            name: name
+            name: name,
+            selected: false
         }
 
         setPlayers([...players, newPlayer]);
+        setName('');
         console.log(players);
+    };
+
+    const handleCheckboxChange = (index: number) => {
+        const updatedPlayers = [...players];
+        updatedPlayers[index].selected = !updatedPlayers[index].selected;
+        setPlayers(updatedPlayers);
+      };
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault(); // Prevent the default form submission
+        handleAddPlayer(name);
     };
 
 
@@ -26,18 +40,31 @@ export const Players: React.FC<Player> = () => {
 
         <div>
             <h3>Add New Player</h3>
-            <input
-                type="text"
-                placeholder="Enter player name"
-                onChange={(e) => setName(e.target.value)}
-            />
-            <button onClick={() => handleAddPlayer(name)}>Add Player</button>
+            <form onSubmit={handleSubmit}>
+                <TextField
+                    label="Enter player name"
+                    variant="outlined"
+                    value={name}
+                    onChange={(e) => {
+                    return setName(e.target.value);
+                    }}
+                />
+                <Button variant="contained" color="primary" onClick={() => handleAddPlayer(name)}>
+                    Add Player
+                </Button>
+            </form>
 
-            <ul>
+            <List>
                 {players.map((player, index) => (
-                    <li key={index}>{player.name}</li>
+                <ListItem key={index}>
+                    <Checkbox
+                    checked={player.selected}
+                    onChange={() => handleCheckboxChange(index)}
+                    />
+                    <ListItemText primary={player.name} />
+                </ListItem>
                 ))}
-            </ul>
+            </List>
         </div>
 
 

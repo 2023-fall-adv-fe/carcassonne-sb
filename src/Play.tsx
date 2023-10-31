@@ -7,9 +7,12 @@ import { FC, useState } from 'react';
 
 interface PlayProps {
     addNewGameResult: (r: GameResult) => void;
+    setTitle: (t: string) => void;
 };
 
-export const Play: FC<PlayProps> = ({addNewGameResult}) => {
+export const Play: FC<PlayProps> = ({addNewGameResult, setTitle}) => {
+
+    setTitle("Play");
 
     const nav = useNavigate();
 

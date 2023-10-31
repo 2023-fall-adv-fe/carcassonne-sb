@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { GameResult, getWinningPercentageDisplay, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts } from './game-results';
+import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts } from './game-results';
 
 const dummyGameResults: GameResult[] = [
   {
@@ -30,6 +30,7 @@ const App = () => {
 
   const [num, setNum] = useState(1);
   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+  const [title, setTitle] = useState<string>("Carcassonne Scoreboard");
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults(
     [
@@ -42,12 +43,14 @@ const App = () => {
   const router = createHashRouter([
     {
       path: "/",
-      element: <Home />,
+      element: <Home
+      setTitle={setTitle}
+      />,
     },
     {
       path: "/stats",
       element: <Stats
-          winningPercentageDisplay={getWinningPercentageDisplay(gameResults)}
+          //winningPercentageDisplay={getWinningPercentageDisplay(gameResults)}
           generalGameTimeFacts={ getGeneralGameTimeFacts(gameResults, Date.now())} />,
     },
     {
@@ -55,11 +58,15 @@ const App = () => {
       element: <Setup 
         num={num}
         setNum={setNum}
+        setTitle={setTitle}
       />,
     },
     {
       path: "/play",
-      element: <Play addNewGameResult={addNewGameResult} />,
+      element: <Play
+        addNewGameResult={addNewGameResult}
+        setTitle={setTitle}
+      />,
     },
     {
       path: "/scoreboard",
@@ -82,15 +89,16 @@ const App = () => {
           }}
         >
           <Toolbar>
+            
             <Typography
               variant='h5'
-              //color={Math.random() > 0.5 ? 'E8CD8A' : 'E8CD8A'}
+              //color={Math.random() > 0.5 ? 'primary' : 'error'}
               sx={{
                 opacity: 0.75,
                 color: '#E8CD8A'
               }}
             >
-              Carcassonne Scoreboard
+              {title}
             </Typography>
           </Toolbar>
         </AppBar>

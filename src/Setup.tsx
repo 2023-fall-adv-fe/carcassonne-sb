@@ -8,9 +8,12 @@ import { Players } from './Players';
 interface SetupProps {
     num: number;
     setNum: any;
+    setTitle: (t: string) => void;
 };
 
-export const Setup: FC<SetupProps> = ({num, setNum}) => {
+export const Setup: FC<SetupProps> = ({num, setNum, setTitle}) => {
+
+    setTitle("Setup");
 
     const navigate = useNavigate();
 
@@ -22,7 +25,7 @@ export const Setup: FC<SetupProps> = ({num, setNum}) => {
             <h2>
                 Setup a Game of Carcassone!
             </h2>
-            <Players name={''} />
+            <Players name={''} selected={false} />
             <Button
                 variant='contained'
                 size='large'

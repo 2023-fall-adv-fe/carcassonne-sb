@@ -1,9 +1,18 @@
 import Button from '@mui/material/Button';
 import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { useNavigate } from "react-router-dom";
+import { FC } from 'react';
 
 
-export const Home = () => {
+export const appTitle = "Carcassonne Scoreboard";
+
+interface HomeProps {
+    setTitle: (t: string) => void;
+};
+
+export const Home: FC<HomeProps> = ({setTitle}) => {
+
+    setTitle("Carcassonne Scorboard");
 
     const navigate = useNavigate();
 
