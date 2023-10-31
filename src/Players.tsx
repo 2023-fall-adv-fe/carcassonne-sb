@@ -12,10 +12,16 @@ export const Players: React.FC<Player> = () => {
 
 
     const handleAddPlayer = (name: string) => {
-        
+        const trimmedName = name.trim();
+
+        if (trimmedName === "" || players.some(player => player.name === trimmedName)) {
+            // Prevents blank player names and duplicates
+
+            return;
+        }
 
         const newPlayer: Player = {
-            name: name,
+            name: trimmedName,
             selected: false
         }
 
@@ -41,17 +47,23 @@ export const Players: React.FC<Player> = () => {
         <div>
             <h3>Add New Player</h3>
             <form onSubmit={handleSubmit}>
+            <div style={{ display: 'flex', maxWidth: '400px' }}>
                 <TextField
                     label="Enter player name"
                     variant="outlined"
                     value={name}
-                    onChange={(e) => {
-                    return setName(e.target.value);
-                    }}
+                    onChange={(e) => setName(e.target.value)}
+                    style={{ flex: 1, marginRight: '8px' }}
                 />
-                <Button variant="contained" color="primary" onClick={() => handleAddPlayer(name)}>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={() => handleAddPlayer(name)}
+                    style={{ flex: 'none', background: '#042B61', color: '#E8CD8A' }}
+                >
                     Add Player
                 </Button>
+            </div>
             </form>
 
             <List>
@@ -66,7 +78,5 @@ export const Players: React.FC<Player> = () => {
                 ))}
             </List>
         </div>
-
-
     );
 };

@@ -35,17 +35,19 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle}) => {
                     , mt: 6
                     , mb: 3
                     , mr: 4
+                    , bgcolor: '#042B61'
+                    , color: '#E8CD8A'
                     , width: {
                         xs: '100%'
                         , md: 'inherit'
                     }
                 }}
-                startIcon={
-                    <CastleTwoToneIcon />
-                }
-                endIcon={
-                    <CastleTwoToneIcon />
-                }
+                // startIcon={
+                //     <CastleTwoToneIcon />
+                // }
+                // endIcon={
+                //     <CastleTwoToneIcon />
+                // }
                 onClick={
                     () => navigate(-1)
                 }
@@ -60,6 +62,8 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle}) => {
                     , pb: 2
                     , mt: 6
                     , mb: 3
+                    , bgcolor: '#042B61'
+                    , color: '#E8CD8A'
                     , width: {
                         xs: '100%'
                         , md: 'inherit'
