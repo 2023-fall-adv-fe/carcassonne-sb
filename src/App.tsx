@@ -11,16 +11,37 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts } from './game-results';
+import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts, getLeaderboardData } from './game-results';
 
 const dummyGameResults: GameResult[] = [
   {
-      won: true
+      winner: "Tom"
+      ,players: ["Tom", "taylor"]
+
       , start: "2023-10-01T17:40:46.333Z"
       , end: "2023-10-01T17:53:27.123Z"
   }
   , {
-      won: false
+      winner: "Troy"
+      , players: ["Troy", "Larry"]
+      , start: "2023-10-09T17:55:46.333Z"
+      , end: "2023-10-09T18:00:27.123Z"
+  }
+      , {
+      winner: "Troy"
+      , players: ["Troy", "Jonah", "Sheldon", "Tom"]
+      , start: "2023-10-09T17:55:46.333Z"
+      , end: "2023-10-09T18:00:27.123Z"
+  }
+      , {
+      winner: "Larry"
+      , players: ["Troy", "Larry"]
+      , start: "2023-10-09T17:55:46.333Z"
+      , end: "2023-10-09T18:00:27.123Z"
+  }
+          , {
+      winner: "Larry"
+      , players: ["Troy", "Larry"]
       , start: "2023-10-09T17:55:46.333Z"
       , end: "2023-10-09T18:00:27.123Z"
   }
@@ -51,7 +72,8 @@ const App = () => {
       path: "/stats",
       element: <Stats
           //winningPercentageDisplay={getWinningPercentageDisplay(gameResults)}
-          generalGameTimeFacts={ getGeneralGameTimeFacts(gameResults, Date.now())} />,
+          generalGameTimeFacts={ getGeneralGameTimeFacts(gameResults, Date.now())}
+          leaderboard={ getLeaderboardData(gameResults)} />,
     },
     {
       path: "/setup",

@@ -9,6 +9,8 @@ interface Player {
 export const Players: React.FC<Player> = () => {
     const [name, setName] = useState<string>('');
     const [players, setPlayers] = useState<Player[]>([]);
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
 
 
     const handleAddPlayer = (name: string) => {
@@ -34,7 +36,15 @@ export const Players: React.FC<Player> = () => {
         const updatedPlayers = [...players];
         updatedPlayers[index].selected = !updatedPlayers[index].selected;
         setPlayers(updatedPlayers);
-      };
+
+        const selectedPlayersCount = updatedPlayers.filter(player => player.selected).length;
+
+        if (selectedPlayersCount < 2 || selectedPlayersCount > 5) {
+            setErrorMessage("You must select 2 to 5 players.");
+        } else {
+            setErrorMessage(null);
+        }
+};
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault(); // Prevent the default form submission
@@ -65,6 +75,9 @@ export const Players: React.FC<Player> = () => {
                 </Button>
             </div>
             </form>
+
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+
 
             <List>
                 {players.map((player, index) => (

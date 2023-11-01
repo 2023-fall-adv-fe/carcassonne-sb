@@ -8,10 +8,11 @@ import {
     , TableBody
     , TableRow
     , TableCell
-    , Box
+    , Box,
+    TableHead
 } from '@mui/material';
 import Grid from '@mui/material/Unstable_Grid2';
-import { GeneralGameTimeFactsDisplay } from './game-results';
+import { GeneralGameTimeFactsDisplay, LeaderboardEntry } from './game-results';
 import { FC } from 'react';
 
 
@@ -19,11 +20,13 @@ import { FC } from 'react';
 interface StatsProps {
     //winningPercentageDisplay: WinningPercentageDisplay
     generalGameTimeFacts: GeneralGameTimeFactsDisplay
+    leaderboard: LeaderboardEntry[];
 }
 
 export const Stats: FC<StatsProps> = ({
     //winningPercentageDisplay
     generalGameTimeFacts
+    , leaderboard
 }) => {
 
     const navigate = useNavigate();
@@ -207,9 +210,72 @@ export const Stats: FC<StatsProps> = ({
                             </TableBody>
                         </Table>
                     </Box>
-                </Paper>
+                    </Paper>
+                </Grid>
+
+
+
+                <Grid
+                    xs={12}
+                    md={6}
+                >
+                    <Paper
+                        elevation={3}
+                        sx={{
+                            overflow: 'hidden'
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                fontSize: 20
+                                , ml: 3
+                                , mt: 3
+                                , mb: 3
+                            }}
+                            color='text.disabled'
+                            gutterBottom
+                        >
+                            LEADERBOARD
+                        </Typography>
+                        <Box
+                        sx={{
+                            pl: 1
+                            , pr: 1
+                        }}
+                    >
+                        <Table
+                            sx={{
+                                mt: 0
+                            }}
+                        >
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>W</TableCell>
+                                    <TableCell>L</TableCell>
+                                    <TableCell>AVG</TableCell>
+                                    <TableCell>PLAYER</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    leaderboard.map(x => (
+                                        <TableRow>
+                                            <TableCell>{x.wins}</TableCell>
+                                            <TableCell>{x.losses}</TableCell>
+                                            <TableCell>{x.avg.toFixed(3)}</TableCell>
+                                            <TableCell>{x.name}</TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                        </Table>
+                    </Box>
+                    </Paper>
+                </Grid>
+
+
+
             </Grid>
-      </Grid>
         </>
     );
 };

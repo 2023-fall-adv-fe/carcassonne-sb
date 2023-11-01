@@ -20,7 +20,8 @@ export const Play: FC<PlayProps> = ({addNewGameResult, setTitle}) => {
 
     const gameOver = (won: boolean) => {
         addNewGameResult({
-            won: won
+            winner: "Moe"
+            , players: ["Larry", "Curly", "Moe"]
             , start: startTimestamp
             , end: new Date().toISOString()
         });
