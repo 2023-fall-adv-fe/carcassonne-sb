@@ -42,8 +42,11 @@ export const Stats: FC<StatsProps> = ({
                 sx={{
                     pt: 2
                     , pb: 2
-                    , mt: 3
+                    , mt: 6
                     , mb: 3
+                    , mr: 4
+                    , bgcolor: '#042B61'
+                    , color: '#E8CD8A'
                     , width: {
                         xs: '100%'
                         , md: 'inherit'
@@ -259,7 +262,9 @@ export const Stats: FC<StatsProps> = ({
                             <TableBody>
                                 {
                                     leaderboard.map(x => (
-                                        <TableRow>
+                                        <TableRow
+                                            key={x.name}
+                                        >
                                             <TableCell>{x.wins}</TableCell>
                                             <TableCell>{x.losses}</TableCell>
                                             <TableCell>{x.avg.toFixed(3)}</TableCell>

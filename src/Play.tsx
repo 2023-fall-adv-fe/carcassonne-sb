@@ -1,8 +1,8 @@
 import Button from '@mui/material/Button';
-import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
+//import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { useNavigate } from "react-router-dom";
 import { GameResult } from './game-results';
-import { FC, useState } from 'react';
+import { FC, useState, useEffect } from 'react';
 
 
 interface PlayProps {
@@ -12,7 +12,10 @@ interface PlayProps {
 
 export const Play: FC<PlayProps> = ({addNewGameResult, setTitle}) => {
 
-    setTitle("Play");
+    useEffect(
+        () => setTitle("Play")
+        , [setTitle]
+    );
 
     const nav = useNavigate();
 

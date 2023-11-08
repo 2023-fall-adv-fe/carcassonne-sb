@@ -78,7 +78,6 @@ export const Players: React.FC<Player> = () => {
 
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
-
             <List>
                 {players.map((player, index) => (
                 <ListItem key={index}>

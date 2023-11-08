@@ -2,6 +2,7 @@ import Button from '@mui/material/Button';
 import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
 import { useNavigate } from "react-router-dom";
 import { FC } from 'react';
+import { useEffect } from 'react';
 
 
 export const appTitle = "Carcassonne Scoreboard";
@@ -12,7 +13,10 @@ interface HomeProps {
 
 export const Home: FC<HomeProps> = ({setTitle}) => {
 
-    setTitle("Carcassonne Scorboard");
+    useEffect(
+        () => setTitle(appTitle)
+        , [setTitle]
+    );
 
     const navigate = useNavigate();
 
@@ -27,6 +31,8 @@ export const Home: FC<HomeProps> = ({setTitle}) => {
                     , mt: 6
                     , mb: 3
                     , mr: 4
+                    , bgcolor: '#042B61'
+                    , color: '#E8CD8A'
                     , width: {
                         xs: '100%'
                         , md: 'inherit'
@@ -52,6 +58,9 @@ export const Home: FC<HomeProps> = ({setTitle}) => {
                     , pb: 2
                     , mt: 6
                     , mb: 3
+                    , mr: 4
+                    , bgcolor: '#042B61'
+                    , color: '#E8CD8A'
                     , width: {
                         xs: '100%'
                         , md: 'inherit'

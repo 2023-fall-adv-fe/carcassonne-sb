@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { useState } from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
-import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts, getLeaderboardData } from './game-results';
+import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts, getLeaderboardData, getPreviousPlayers } from './game-results';
 
 const dummyGameResults: GameResult[] = [
   {
@@ -81,6 +81,7 @@ const App = () => {
         num={num}
         setNum={setNum}
         setTitle={setTitle}
+        previousPlayers={ getPreviousPlayers(gameResults) }
       />,
     },
     {
