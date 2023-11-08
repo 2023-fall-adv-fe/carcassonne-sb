@@ -8,9 +8,10 @@ import { FC, useState, useEffect } from 'react';
 interface PlayProps {
     addNewGameResult: (r: GameResult) => void;
     setTitle: (t: string) => void;
+    chosenPlayers: string[];
 };
 
-export const Play: FC<PlayProps> = ({addNewGameResult, setTitle}) => {
+export const Play: FC<PlayProps> = ({addNewGameResult, setTitle, chosenPlayers}) => {
 
     useEffect(
         () => setTitle("Play")
@@ -21,10 +22,10 @@ export const Play: FC<PlayProps> = ({addNewGameResult, setTitle}) => {
 
     const [startTimestamp, _] = useState(new Date().toISOString());
 
-    const gameOver = (won: boolean) => {
+    const gameOver = (winner: string) => {
         addNewGameResult({
-            winner: "Moe"
-            , players: ["Larry", "Curly", "Moe"]
+            winner: winner
+            , players: chosenPlayers
             , start: startTimestamp
             , end: new Date().toISOString()
         });
@@ -36,27 +37,33 @@ export const Play: FC<PlayProps> = ({addNewGameResult, setTitle}) => {
         <h3>
             Play &amp; Collect Data
         </h3>
-        <Button
-            variant="contained"
-            color='success'
-            size="large"
-            sx={{
-                pt: 2
-                , pb: 2
-                , mt: 3
-                , mb: 3
-                , width: {
-                    xs: '100%'
-                    , md: 'inherit'
-                }
-            }}
-            onClick={
-                () => gameOver(true)
-            }
-        >
-            I Won
-        </Button>
-        <Button
+
+        {
+            chosenPlayers.map(x => (
+                <Button
+                    key={x}
+                    variant="contained"
+                    color='success'
+                    size="large"
+                    sx={{
+                        pt: 2
+                        , pb: 2
+                        , mt: 3
+                        , mb: 3
+                        , width: {
+                            xs: '100%'
+                            , md: 'inherit'
+                        }
+                    }}
+                    onClick={
+                        () => gameOver(x)
+                    }
+                >
+                    {x} Won
+                </Button>
+            ))
+        }
+        {/* <Button
             variant="contained"
             color='error'
             size="large"
@@ -75,7 +82,7 @@ export const Play: FC<PlayProps> = ({addNewGameResult, setTitle}) => {
             }
         >
             I Lost
-        </Button>
+        </Button> */}
 
             {/* <Button
                 variant='outlined'

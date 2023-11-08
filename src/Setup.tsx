@@ -12,9 +12,10 @@ interface SetupProps {
     setNum: any;
     setTitle: (t: string) => void;
     previousPlayers: string[];
+    setChosenPlayers: (players: string[]) => void;
 };
 
-export const Setup: FC<SetupProps> = ({num, setNum, setTitle, previousPlayers}) => {
+export const Setup: FC<SetupProps> = ({num, setNum, setTitle, previousPlayers, setChosenPlayers}) => {
 
     const [availablePlayers, setAvailablePlayers] = 
         useState(previousPlayers.map(x => ({
@@ -146,6 +147,13 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle, previousPlayers}) 
                             setShowWarning(true);
                             return;
                         }
+
+                        setChosenPlayers(
+                            availablePlayers
+                                .filter(x => x.checked)
+                                .map(x => x.name)
+                        );
+                        
                         setNum(num + 1);
                         navigate('/play');
                     }
