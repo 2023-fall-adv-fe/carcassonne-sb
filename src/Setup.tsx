@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { FC, useState, useEffect } from 'react';
 import { Players } from './Players';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Alert, Checkbox, FormControlLabel, Snackbar } from '@mui/material';
+import { Alert, Box, Checkbox, FormControlLabel, Snackbar, TextField } from '@mui/material';
 
 
 interface SetupProps {
@@ -24,6 +24,8 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle, previousPlayers}) 
 
     const [showWarning, setShowWarning] = useState(false);
 
+    const [newPlayerName, setNewPlayerName] = useState("");
+
 
     const atLeastTwoPlayersChecked = availablePlayers
     .filter(x => x.checked)
@@ -41,6 +43,31 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle, previousPlayers}) 
 
     //let num = 1;
     //const [num, setNum] = useState(1);
+
+    const validateAndAddNewPlayer = () => {
+
+        // Validate Here.
+        if (
+            newPlayerName.length === 0
+            || availablePlayers.some(s => s.name.toUpperCase() === newPlayerName.toUpperCase())
+        ) {
+            return;
+
+        }
+
+        setAvailablePlayers(
+            [
+                ...availablePlayers
+                , {
+                    name: newPlayerName
+                    , checked: true
+                }
+            ].sort(
+                (a, b) => a.name.localeCompare(b.name)
+            )
+        );
+        setNewPlayerName("");
+    };
 
     return (
         <>
@@ -126,6 +153,33 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle, previousPlayers}) 
             >
                 Start the Game
             </Button>
+            <Box
+                sx={{
+                    mt: 2
+                    , display:"flex"
+                    , flexDirection: "row"
+                    , gap: 2
+                    , maxWidth: "900px"
+                }}
+            >
+                <TextField 
+                    label="Enter new player name"
+                    variant='outlined'
+                    fullWidth
+                    value={newPlayerName}
+                    onChange={
+                        (e) => setNewPlayerName(e.target.value)
+                    }
+                />
+                <Button
+                    variant={newPlayerName.length === 0 ? "outlined" : "contained"}
+                    onClick={
+                        validateAndAddNewPlayer
+                    }
+                >
+                    ADD
+                </Button>
+            </Box>
             <Grid
                 container
                 spacing={2}
@@ -137,6 +191,7 @@ export const Setup: FC<SetupProps> = ({num, setNum, setTitle, previousPlayers}) 
                 {
                     availablePlayers.map(x => (
                         <Grid
+                        key={x.name}
                         xs={12}
                         sm={6}
                         md={4}
