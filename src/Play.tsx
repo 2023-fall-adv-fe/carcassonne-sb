@@ -1,104 +1,81 @@
 import Button from '@mui/material/Button';
-//import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
-import { useNavigate } from "react-router-dom";
+import Box from '@mui/material/Box';
+import { useNavigate } from 'react-router-dom';
 import { GameResult } from './game-results';
 import { FC, useState, useEffect } from 'react';
 
-
 interface PlayProps {
-    addNewGameResult: (r: GameResult) => void;
-    setTitle: (t: string) => void;
-    chosenPlayers: string[];
-};
+  addNewGameResult: (r: GameResult) => void;
+  setTitle: (t: string) => void;
+  chosenPlayers: string[];
+}
 
-export const Play: FC<PlayProps> = ({addNewGameResult, setTitle, chosenPlayers}) => {
+export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers }) => {
+  useEffect(() => setTitle('Play'), [setTitle]);
 
-    useEffect(
-        () => setTitle("Play")
-        , [setTitle]
-    );
+  const nav = useNavigate();
 
-    const nav = useNavigate();
+  const [startTimestamp,] = useState(new Date().toISOString());
+  const [playerScores, setPlayerScores] = useState<{ [player: string]: number }>(
+    chosenPlayers.reduce((acc, player) => ({ ...acc, [player]: 0 }), {})
+  );
 
-    const [startTimestamp, _] = useState(new Date().toISOString());
+  const handleScoreChange = (player: string, increment: number) => {
+    // Update the score for the specified player, ensuring it doesn't go below 0
+    setPlayerScores((prevScores) => ({ ...prevScores, [player]: Math.max(0, prevScores[player] + increment) }));
+  };
 
-    const gameOver = (winner: string) => {
-        addNewGameResult({
-            winner: winner
-            , players: chosenPlayers
-            , start: startTimestamp
-            , end: new Date().toISOString()
-        });
-        nav(-2);
-    };
+  const endGame = () => {
+    // Find the player with the highest score
+    const winner = Object.keys(playerScores).reduce((a, b) => (playerScores[a] > playerScores[b] ? a : b));
 
-    return (
-        <>
-        <h3>
-            Play &amp; Collect Data
-        </h3>
+    addNewGameResult({
+      winner: winner,
+      players: chosenPlayers,
+      start: startTimestamp,
+      end: new Date().toISOString(),
+    });
 
-        {
-            chosenPlayers.map(x => (
-                <Button
-                    key={x}
-                    variant="contained"
-                    color='success'
-                    size="large"
-                    sx={{
-                        pt: 2
-                        , pb: 2
-                        , mt: 3
-                        , mb: 3
-                        , width: {
-                            xs: '100%'
-                            , md: 'inherit'
-                        }
-                    }}
-                    onClick={
-                        () => gameOver(x)
-                    }
-                >
-                    {x} Won
-                </Button>
-            ))
-        }
-        {/* <Button
+    nav(-2);
+  };
+
+  return (
+    <>
+      <h2>Scoreboard</h2>
+
+      {chosenPlayers.map((x) => (
+        <Box key={x} display="flex" flexDirection="column" alignItems="center" mb={2}>
+            <h3>{x}</h3>
+          <Button
             variant="contained"
-            color='error'
-            size="large"
-            sx={{
-                pt: 2
-                , pb: 2
-                , mt: 3
-                , mb: 3
-                , width: {
-                    xs: '100%'
-                    , md: 'inherit'
-                }
-            }}
-            onClick={
-                () => gameOver(false)
-            }
-        >
-            I Lost
-        </Button> */}
-
-            {/* <Button
-                variant='outlined'
-                size='large'
-                startIcon={
-                    <CastleTwoToneIcon />
-                }
-                endIcon={
-                    <CastleTwoToneIcon />
-                }
-                onClick={
-                    () => navigate('/scoreboard')
-                }
-            >
-                Finish Game
-            </Button> */}
-        </>
-    );
+            color="primary"
+            size="small"
+            onClick={() => handleScoreChange(x, 1)}
+          >
+            +
+          </Button>
+          <p style={{ fontSize: '1.5rem', margin: '10px 0' }}>{playerScores[x]}</p>
+          <Button
+            variant="contained"
+            color="secondary"
+            size="small"
+            onClick={() => handleScoreChange(x, -1)}
+          >
+            -
+          </Button>
+        </Box>
+      ))}
+      <Button
+        variant="contained"
+        color="success"
+        size="large"
+        onClick={() => endGame()}
+        sx={{
+          mt: 3,
+        }}
+      >
+        End Game
+      </Button>
+    </>
+  );
 };
