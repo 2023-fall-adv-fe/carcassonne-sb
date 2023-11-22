@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import { GameResult } from './game-results';
 import { FC, useState, useEffect } from 'react';
+import { Grid } from '@mui/material';
 
 interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
@@ -44,30 +45,96 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
       <h2>Scoreboard</h2>
 
       {chosenPlayers.map((x) => (
-        <Box key={x} display="flex" flexDirection="column" alignItems="center" mb={2}>
-            <h3>{x}</h3>
-          <Button
-            variant="contained"
-            color="primary"
-            size="small"
-            onClick={() => handleScoreChange(x, 1)}
-          >
-            +
-          </Button>
-          <p style={{ fontSize: '1.5rem', margin: '10px 0' }}>{playerScores[x]}</p>
-          <Button
-            variant="contained"
-            color="secondary"
-            size="small"
-            onClick={() => handleScoreChange(x, -1)}
-          >
-            -
-          </Button>
+        <Box key={x} boxShadow={2}>
+            <h3 style={{ textAlign: 'center', paddingTop: '10px'}}>{x} {playerScores[x]}</h3>
+            <Grid display="flex" flexDirection="row" alignItems="center" justifyContent="center" textAlign="center" mb={2} pb={2} >
+            <Grid pl={1} pr={1} >
+            <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Cities</p>
+                <Button
+                  variant="contained"
+                  color="success"
+                  size="small"
+                  onClick={() => handleScoreChange(x, 1)}
+                >
+                  +
+                </Button>
+                
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{playerScores[x]}</p>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={() => handleScoreChange(x, -1)}
+                >
+                  -
+                </Button>      
+            </Grid>
+            <Grid  pl={1} pr={1}>
+            <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Roads</p>
+                <Button
+                  variant="contained"
+                  color="success"
+                  size="small"
+                  onClick={() => handleScoreChange(x, 1)}
+                >
+                  +
+                </Button>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{playerScores[x]}</p>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={() => handleScoreChange(x, -1)}
+                >
+                  -
+                </Button>      
+            </Grid>
+            <Grid  pl={1} pr={1}>
+            <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Cloisters</p>
+                <Button
+                  variant="contained"
+                  color="success"
+                  size="small"
+                  onClick={() => handleScoreChange(x, 1)}
+                >
+                  +
+                </Button>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{playerScores[x]}</p>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={() => handleScoreChange(x, -1)}
+                >
+                  -
+                </Button>      
+            </Grid>
+            <Grid  pl={1} pr={1}>
+            <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Farms</p>
+                <Button
+                  variant="contained"
+                  color="success"
+                  size="small"
+                  onClick={() => handleScoreChange(x, 1)}
+                >
+                  +
+                </Button>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{playerScores[x]}</p>
+                <Button
+                  variant="contained"
+                  color="error"
+                  size="small"
+                  onClick={() => handleScoreChange(x, -1)}
+                >
+                  -
+                </Button>      
+            </Grid>
+            </Grid>
         </Box>
       ))}
       <Button
         variant="contained"
-        color="success"
+        color="primary"
         size="large"
         onClick={() => endGame()}
         sx={{
