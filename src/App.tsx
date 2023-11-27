@@ -14,8 +14,8 @@ import { AppBar, Box, Button, Dialog, DialogActions, DialogContent, DialogConten
 import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts, getLeaderboardData, getPreviousPlayers } from './game-results';
 import React from 'react';
 import { SettingsOutlined } from '@mui/icons-material';
-import localForage from "localforage";
-import localforage from 'localforage';
+
+import localForage from 'localforage';
 
 // const dummyGameResults: GameResult[] = [
 //   {
@@ -94,6 +94,7 @@ const App = () => {
         setTitle={setTitle}
         previousPlayers={ getPreviousPlayers(gameResults) }
         setChosenPlayers={setChosenPlayers}
+
       />,
     },
     {
@@ -131,8 +132,9 @@ const App = () => {
               //color={Math.random() > 0.5 ? 'primary' : 'error'}
               sx={{
                 opacity: 0.75,
-                color: '#E8CD8A'
-
+                color: '#E8CD8A',
+                flexGrow: 1,
+                textAlign: 'left',
               }}
             >
               {title}
@@ -194,7 +196,7 @@ const App = () => {
           variant={emailAddress.length > 0 ? 'contained' : 'outlined'}
           onClick={
             async () => {
-              await localforage.setItem('email', emailAddress);
+              await localForage.setItem('email', emailAddress);
               setSettingsOpen(false)
             }
           } 

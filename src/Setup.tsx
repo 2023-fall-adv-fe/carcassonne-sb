@@ -1,11 +1,10 @@
 import Button from '@mui/material/Button';
 import CastleTwoToneIcon from '@mui/icons-material/CastleTwoTone';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { FC, useState, useEffect } from 'react';
 import { Players } from './Players';
 import Grid from '@mui/material/Unstable_Grid2';
-import { Alert, Box, Checkbox, FormControlLabel, Snackbar, TextField } from '@mui/material';
-
+import { Alert, Box, Checkbox, FormControlLabel, Snackbar, TextField, Select, MenuItem } from '@mui/material';
 
 interface SetupProps {
     num: number;
@@ -13,219 +12,200 @@ interface SetupProps {
     setTitle: (t: string) => void;
     previousPlayers: string[];
     setChosenPlayers: (players: string[]) => void;
-};
+}
 
-export const Setup: FC<SetupProps> = ({num, setNum, setTitle, previousPlayers, setChosenPlayers}) => {
-
-    const [availablePlayers, setAvailablePlayers] = 
-        useState(previousPlayers.map(x => ({
-            name: x
-            , checked: false
-        })));
+export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, setChosenPlayers }) => {
+    const [availablePlayers, setAvailablePlayers] = useState(
+        previousPlayers.map((x) => ({
+            name: x,
+            checked: false,
+        }))
+    );
 
     const [showWarning, setShowWarning] = useState(false);
+    const [newPlayerName, setNewPlayerName] = useState('');
+    const [playerColors, setPlayerColors] = useState<Record<string, string>>({});
 
-    const [newPlayerName, setNewPlayerName] = useState("");
-
-
-    const atLeastTwoPlayersChecked = availablePlayers
-    .filter(x => x.checked)
-    .length >= 2 
-    && availablePlayers
-    .filter(x => x.checked)
-    .length <= 5;
-
-    useEffect(
-        () => setTitle("Setup")
-        , [setTitle]
-    );
+    useEffect(() => setTitle('Setup'), [setTitle]);
 
     const navigate = useNavigate();
 
-    //let num = 1;
-    //const [num, setNum] = useState(1);
+    const atLeastTwoPlayersChecked =
+        availablePlayers.filter((x) => x.checked).length >= 2 &&
+        availablePlayers.filter((x) => x.checked).length <= 5;
 
     const validateAndAddNewPlayer = () => {
-
-        // Validate Here.
-        if (
-            newPlayerName.length === 0
-            || availablePlayers.some(s => s.name.toUpperCase() === newPlayerName.toUpperCase())
-        ) {
+        if (newPlayerName.length === 0 || availablePlayers.some((s) => s.name.toUpperCase() === newPlayerName.toUpperCase())) {
             return;
-
         }
 
         setAvailablePlayers(
             [
-                ...availablePlayers
-                , {
-                    name: newPlayerName
-                    , checked: true
-                }
-            ].sort(
-                (a, b) => a.name.localeCompare(b.name)
-            )
+                ...availablePlayers,
+                {
+                    name: newPlayerName,
+                    checked: true,
+                },
+            ].sort((a, b) => a.name.localeCompare(b.name))
         );
-        setNewPlayerName("");
+        setNewPlayerName('');
+    };
+
+    const handleColorChange = (playerName: string, color: string) => {
+        setPlayerColors((prevColors) => ({
+            ...prevColors,
+            [playerName]: color,
+        }));
     };
 
     return (
         <>
-
-            <Snackbar 
+            <Snackbar
                 anchorOrigin={{
-                    vertical: "top"
-                    , horizontal: "center"
+                    vertical: 'top',
+                    horizontal: 'center',
                 }}
-                open={showWarning} 
-                autoHideDuration={2500} 
-                onClose={
-                    () => setShowWarning(false)
-                    }>
-                <Alert 
-                    severity="warning" 
-                    sx={{ width: '100%' }}>
-                        Choose 2 to 5 players.
+                open={showWarning}
+                autoHideDuration={2500}
+                onClose={() => setShowWarning(false)}
+            >
+                <Alert severity="warning" sx={{ width: '100%' }}>
+                    Choose 2 to 5 players.
                 </Alert>
             </Snackbar>
 
-            <h2>
-                Choose Players!
-            </h2>
+            <h2>Choose Players!</h2>
             <Players name={''} selected={false} />
+
             <Button
-                variant='contained'
-                size='large'
+                variant="contained"
+                size="large"
                 sx={{
-                    pt: 2
-                    , pb: 2
-                    , mt: 6
-                    , mb: 3
-                    , mr: 4
-                    , bgcolor: '#042B61'
-                    , color: '#E8CD8A'
-                    , width: {
-                        xs: '100%'
-                        , md: 'inherit'
-                    }
+                    pt: 2,
+                    pb: 2,
+                    mt: 6,
+                    mb: 3,
+                    mr: 4,
+                    bgcolor: '#042B61',
+                    color: '#E8CD8A',
+                    width: {
+                        xs: '100%',
+                        md: 'inherit',
+                    },
                 }}
-                onClick={
-                    () => navigate(-1)
-                }
+                onClick={() => navigate(-1)}
             >
                 Home
             </Button>
-            <Button
-                variant='contained'
-                size='large'
-                sx={{
-                    pt: 2
-                    , pb: 2
-                    , mt: 6
-                    , mb: 3
-                    , bgcolor: '#042B61'
-                    , color: '#E8CD8A'
-                    // removes hover effect
-                    , "&:hover": {
-                        bgcolor: '#042B61'
-                    }
-                    , width: {
-                        xs: '100%'
-                        , md: 'inherit'
-                    }
-                }}
-                startIcon={
-                    <CastleTwoToneIcon />
-                }
-                endIcon={
-                    <CastleTwoToneIcon />
-                }
-                onClick={
-                    () => {
-                        if (!atLeastTwoPlayersChecked) {
-                            setShowWarning(true);
-                            return;
-                        }
 
-                        setChosenPlayers(
-                            availablePlayers
-                                .filter(x => x.checked)
-                                .map(x => x.name)
-                        );
-                        
-                        setNum(num + 1);
-                        navigate('/play');
+            <Button
+                variant="contained"
+                size="large"
+                sx={{
+                    pt: 2,
+                    pb: 2,
+                    mt: 6,
+                    mb: 3,
+                    bgcolor: '#042B61',
+                    color: '#E8CD8A',
+                    "&:hover": {
+                        bgcolor: '#042B61',
+                    },
+                    width: {
+                        xs: '100%',
+                        md: 'inherit',
+                    },
+                }}
+                startIcon={<CastleTwoToneIcon />}
+                endIcon={<CastleTwoToneIcon />}
+                onClick={() => {
+                    if (!atLeastTwoPlayersChecked) {
+                        setShowWarning(true);
+                        return;
                     }
-                }
+
+                    setChosenPlayers(
+                        availablePlayers
+                            .filter((x) => x.checked)
+                            .map((x) => x.name)
+                    );
+
+                    setNum(num + 1);
+                    navigate('/play');
+                }}
             >
                 Start the Game
             </Button>
+
             <Box
                 sx={{
-                    mt: 2
-                    , display:"flex"
-                    , flexDirection: "row"
-                    , gap: 2
-                    , maxWidth: "900px"
+                    mt: 2,
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: 2,
+                    maxWidth: '900px',
                 }}
             >
-                <TextField 
+                <TextField
                     label="Enter new player name"
-                    variant='outlined'
+                    variant="outlined"
                     fullWidth
                     value={newPlayerName}
-                    onChange={
-                        (e) => setNewPlayerName(e.target.value)
-                    }
+                    onChange={(e) => setNewPlayerName(e.target.value)}
                 />
                 <Button
-                    variant={newPlayerName.length === 0 ? "outlined" : "contained"}
-                    onClick={
-                        validateAndAddNewPlayer
-                    }
+                    variant={newPlayerName.length === 0 ? 'outlined' : 'contained'}
+                    style={{
+                        background: newPlayerName.length === 0 ? 'transparent' : '#042B61',
+                        color: newPlayerName.length === 0 ? '#000000' : '#E8CD8A',
+                    }}
+                    onClick={validateAndAddNewPlayer}
                 >
                     ADD
                 </Button>
             </Box>
-            <Grid
-                container
-                spacing={2}
-                sx={{
-                    mt: 2
-                    , mb: 2
-                }}
-            >
-                {
-                    availablePlayers.map(x => (
-                        <Grid
-                        key={x.name}
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        lg={2}
-                    >
-                        <FormControlLabel 
-                                control={
-                                    <Checkbox 
+
+            <Grid container spacing={2} sx={{ mt: 2, mb: 2 }}>
+                {availablePlayers.map((x) => (
+                    <Grid key={x.name} xs={12} sm={6} md={4} lg={2}>
+                        <FormControlLabel
+                            control={
+                                <>
+                                    <Checkbox
                                         checked={x.checked}
-                                        onChange={
-                                            (e) => setAvailablePlayers(
-                                                [
-                                                    ...availablePlayers.map(y => ({
-                                                        name: y.name
-                                                        , checked: y.name === x.name ? !y.checked : y.checked
-                                                    }))
-                                                ]
-                                            )
+                                        onChange={(e) =>
+                                            setAvailablePlayers([
+                                                ...availablePlayers.map((y) => ({
+                                                    name: y.name,
+                                                    checked: y.name === x.name ? !y.checked : y.checked,
+                                                })),
+                                            ])
                                         }
                                     />
-                                } 
-                                label={x.name} 
-                            />
+
+                                </>
+                            }
+                            label={x.name}
+                            
+                        />
+                            {x.checked && (
+                                <Select
+                                    value={playerColors[x.name] || ''}
+                                    onChange={(e) => handleColorChange(x.name, e.target.value as string)}
+                                    displayEmpty
+                                >
+                                    <MenuItem value="" disabled>
+                                        Select Color
+                                    </MenuItem>
+                                    <MenuItem value="red">Red</MenuItem>
+                                    <MenuItem value="blue">Blue</MenuItem>
+                                    <MenuItem value="green">Green</MenuItem>
+                                    <MenuItem value="yellow">Yellow</MenuItem>
+                                    <MenuItem value="black">Black</MenuItem>
+                                </Select>
+                            )}
                     </Grid>
-                    ))
-                }
+                ))}
             </Grid>
         </>
     );
