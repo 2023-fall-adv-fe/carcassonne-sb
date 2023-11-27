@@ -10,8 +10,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { useState } from 'react';
-import { AppBar, Box, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, TextField, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts, getLeaderboardData, getPreviousPlayers } from './game-results';
+import React from 'react';
+import { SettingsOutlined } from '@mui/icons-material';
+import localForage from "localforage";
+import localforage from 'localforage';
 
 // const dummyGameResults: GameResult[] = [
 //   {
@@ -53,6 +57,12 @@ const App = () => {
   const [gameResults, setGameResults] = useState<GameResult[]>([]);
   const [title, setTitle] = useState<string>("Carcassonne Scoreboard");
   const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
+
+  const [settingsOpen, setSettingsOpen] = React.useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
+
+  const [emailAddress, setEmailAddress] = React.useState("");
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults(
     [
@@ -122,10 +132,19 @@ const App = () => {
               sx={{
                 opacity: 0.75,
                 color: '#E8CD8A'
+
               }}
             >
               {title}
             </Typography>
+            <IconButton
+              size='small'
+              onClick={
+                () => setSettingsOpen(true)
+              }
+            >
+              <SettingsOutlined />
+            </IconButton>
           </Toolbar>
         </AppBar>
       </Box>
@@ -138,6 +157,53 @@ const App = () => {
       >
       <RouterProvider router={router} />
       </Box>
+
+      <Dialog
+        fullScreen={fullScreen}
+        open={settingsOpen}
+        onClose={
+          () => setSettingsOpen(false)
+        }
+      >
+        <DialogTitle>
+            Settings
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+                Your email address will be used to save/load game results. We will
+                not send you spam.
+          </DialogContentText>
+                <TextField 
+                    label="Enter your email address"
+                    variant='outlined'
+                    fullWidth
+                    value={emailAddress}
+                    onChange={
+                        (e) => setEmailAddress(e.target.value)
+                    }
+                    sx={{
+                      mt: 3,
+                    }}
+                />
+        </DialogContent>
+        <DialogActions>
+          {/* <Button autoFocus onClick={handleClose}>
+            Disagree
+          </Button> */}
+          <Button 
+          variant={emailAddress.length > 0 ? 'contained' : 'outlined'}
+          onClick={
+            async () => {
+              await localforage.setItem('email', emailAddress);
+              setSettingsOpen(false)
+            }
+          } 
+            autoFocus>
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+      
     </div>
   );
 };
