@@ -21,9 +21,42 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
     chosenPlayers.reduce((acc, player) => ({ ...acc, [player]: 0 }), {})
   );
 
-  const handleScoreChange = (player: string, increment: number) => {
-    // Update the score for the specified player, ensuring it doesn't go below 0
+  const [cityScores, setCityScores] = useState<{ [player: string]: number }>(
+    chosenPlayers.reduce((acc, player) => ({ ...acc, [player]: 0 }), {})
+  );
+
+  const [roadScores, setRoadScores] = useState<{ [player: string]: number }>(
+    chosenPlayers.reduce((acc, player) => ({ ...acc, [player]: 0 }), {})
+  );
+
+  const [cloisterScores, setCloisterScores] = useState<{ [player: string]: number }>(
+    chosenPlayers.reduce((acc, player) => ({ ...acc, [player]: 0 }), {})
+  );
+
+  const [farmScores, setFarmScores] = useState<{ [player: string]: number }>(
+    chosenPlayers.reduce((acc, player) => ({ ...acc, [player]: 0 }), {})
+  );
+
+  const handleScoreChange = (player: string, scoringType: string, increment: number) => {
+    // Update the score for the specified player and scoring type
     setPlayerScores((prevScores) => ({ ...prevScores, [player]: Math.max(0, prevScores[player] + increment) }));
+
+    switch (scoringType) {
+      case 'cities':
+        setCityScores((prevScores) => ({ ...prevScores, [player]: Math.max(0, prevScores[player] + increment) }));
+        break;
+      case 'roads':
+        setRoadScores((prevScores) => ({ ...prevScores, [player]: Math.max(0, prevScores[player] + increment) }));
+        break;
+      case 'cloisters':
+        setCloisterScores((prevScores) => ({ ...prevScores, [player]: Math.max(0, prevScores[player] + increment) }));
+        break;
+      case 'farms':
+        setFarmScores((prevScores) => ({ ...prevScores, [player]: Math.max(0, prevScores[player] + increment) }));
+        break;
+      default:
+        break;
+    }
   };
 
   const endGame = () => {
@@ -54,17 +87,17 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
                   variant="contained"
                   color="success"
                   size="small"
-                  onClick={() => handleScoreChange(x, 1)}
+                  onClick={() => handleScoreChange(x, 'cities', 1)}
                 >
                   +
                 </Button>
                 
-                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{playerScores[x]}</p>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{cityScores[x]}</p>
                 <Button
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={() => handleScoreChange(x, -1)}
+                  onClick={() => handleScoreChange(x, 'cities', -1)}
                 >
                   -
                 </Button>      
@@ -75,16 +108,16 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
                   variant="contained"
                   color="success"
                   size="small"
-                  onClick={() => handleScoreChange(x, 1)}
+                  onClick={() => handleScoreChange(x, 'roads', 1)}
                 >
                   +
                 </Button>
-                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{playerScores[x]}</p>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{roadScores[x]}</p>
                 <Button
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={() => handleScoreChange(x, -1)}
+                  onClick={() => handleScoreChange(x, 'roads', -1)}
                 >
                   -
                 </Button>      
@@ -95,16 +128,16 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
                   variant="contained"
                   color="success"
                   size="small"
-                  onClick={() => handleScoreChange(x, 1)}
+                  onClick={() => handleScoreChange(x, 'cloisters', 1)}
                 >
                   +
                 </Button>
-                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{playerScores[x]}</p>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{cloisterScores[x]}</p>
                 <Button
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={() => handleScoreChange(x, -1)}
+                  onClick={() => handleScoreChange(x, 'cloisters', -1)}
                 >
                   -
                 </Button>      
@@ -115,16 +148,16 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
                   variant="contained"
                   color="success"
                   size="small"
-                  onClick={() => handleScoreChange(x, 1)}
+                  onClick={() => handleScoreChange(x, 'farms', 1)}
                 >
                   +
                 </Button>
-                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{playerScores[x]}</p>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{farmScores[x]}</p>
                 <Button
                   variant="contained"
                   color="error"
                   size="small"
-                  onClick={() => handleScoreChange(x, -1)}
+                  onClick={() => handleScoreChange(x, 'farms', -1)}
                 >
                   -
                 </Button>      

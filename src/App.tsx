@@ -13,44 +13,44 @@ import { useState } from 'react';
 import { AppBar, Box, Toolbar, Typography } from '@mui/material';
 import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts, getLeaderboardData, getPreviousPlayers } from './game-results';
 
-const dummyGameResults: GameResult[] = [
-  {
-      winner: "Tom"
-      ,players: ["Tom", "taylor"]
+// const dummyGameResults: GameResult[] = [
+//   {
+//       winner: "Tom"
+//       ,players: ["Tom", "taylor"]
 
-      , start: "2023-10-01T17:40:46.333Z"
-      , end: "2023-10-01T17:53:27.123Z"
-  }
-  , {
-      winner: "Troy"
-      , players: ["Troy", "Larry"]
-      , start: "2023-10-09T17:55:46.333Z"
-      , end: "2023-10-09T18:00:27.123Z"
-  }
-      , {
-      winner: "Troy"
-      , players: ["Troy", "Jonah", "Sheldon", "Tom"]
-      , start: "2023-10-09T17:55:46.333Z"
-      , end: "2023-10-09T18:00:27.123Z"
-  }
-      , {
-      winner: "Larry"
-      , players: ["Troy", "Larry"]
-      , start: "2023-10-09T17:55:46.333Z"
-      , end: "2023-10-09T18:00:27.123Z"
-  }
-          , {
-      winner: "Larry"
-      , players: ["Troy", "Larry"]
-      , start: "2023-10-09T17:55:46.333Z"
-      , end: "2023-10-09T18:00:27.123Z"
-  }
-];
+//       , start: "2023-10-01T17:40:46.333Z"
+//       , end: "2023-10-01T17:53:27.123Z"
+//   }
+//   , {
+//       winner: "Troy"
+//       , players: ["Troy", "Larry"]
+//       , start: "2023-10-09T17:55:46.333Z"
+//       , end: "2023-10-09T18:00:27.123Z"
+//   }
+//       , {
+//       winner: "Troy"
+//       , players: ["Troy", "Jonah", "Sheldon", "Tom"]
+//       , start: "2023-10-09T17:55:46.333Z"
+//       , end: "2023-10-09T18:00:27.123Z"
+//   }
+//       , {
+//       winner: "Larry"
+//       , players: ["Troy", "Larry"]
+//       , start: "2023-10-09T17:55:46.333Z"
+//       , end: "2023-10-09T18:00:27.123Z"
+//   }
+//           , {
+//       winner: "Larry"
+//       , players: ["Troy", "Larry"]
+//       , start: "2023-10-09T17:55:46.333Z"
+//       , end: "2023-10-09T18:00:27.123Z"
+//   }
+// ];
 
 const App = () => {
 
   const [num, setNum] = useState(1);
-  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
   const [title, setTitle] = useState<string>("Carcassonne Scoreboard");
   const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
 

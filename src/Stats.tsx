@@ -80,6 +80,7 @@ export const Stats: FC<StatsProps> = ({
                         elevation={3}
                         sx={{
                             overflow: 'hidden'
+                            , height: '100%'
                         }}
                     >
                         <Typography
@@ -162,7 +163,11 @@ export const Stats: FC<StatsProps> = ({
                                         <Typography
                                             fontSize={20}
                                         >
-                                            {generalGameTimeFacts.lastPlayed} ago
+                                            {
+                                                generalGameTimeFacts.totalGames > 0
+                                                ? `${generalGameTimeFacts.lastPlayed} ago`
+                                                : ''
+                                            }
                                         </Typography>
                                     </TableCell>
                                 </TableRow> 
@@ -184,7 +189,12 @@ export const Stats: FC<StatsProps> = ({
                                         <Typography
                                             fontSize={20}
                                         >
-                                            {generalGameTimeFacts.shortestGame}
+                                            {/* {generalGameTimeFacts.shortestGame} */}
+                                            {
+                                                generalGameTimeFacts.totalGames > 0
+                                                ? generalGameTimeFacts.shortestGame
+                                                : ''
+                                            }
                                         </Typography>
                                     </TableCell>
                                 </TableRow> 
@@ -206,7 +216,12 @@ export const Stats: FC<StatsProps> = ({
                                         <Typography
                                             fontSize={20}
                                         >
-                                            {generalGameTimeFacts.longestGame}
+                                            {/* {generalGameTimeFacts.longestGame} */}
+                                            {
+                                                generalGameTimeFacts.totalGames > 0
+                                                ? generalGameTimeFacts.longestGame
+                                                : ''
+                                            }
                                         </Typography>
                                     </TableCell>
                                 </TableRow> 
@@ -226,6 +241,7 @@ export const Stats: FC<StatsProps> = ({
                         elevation={3}
                         sx={{
                             overflow: 'hidden'
+                            , height: '100%'
                         }}
                     >
                         <Typography

@@ -55,7 +55,7 @@ export const Players: React.FC<Player> = () => {
     return (
 
         <div>
-            <h3>Add New Player</h3>
+            {/* <h3>Add New Player</h3>
             <form onSubmit={handleSubmit}>
             <div style={{ display: 'flex', maxWidth: '400px' }}>
                 <TextField
@@ -74,7 +74,7 @@ export const Players: React.FC<Player> = () => {
                     Add Player
                 </Button>
             </div>
-            </form>
+            </form> */}
 
             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
 
