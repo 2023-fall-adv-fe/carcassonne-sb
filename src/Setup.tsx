@@ -25,6 +25,7 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
     const [showWarning, setShowWarning] = useState(false);
     const [newPlayerName, setNewPlayerName] = useState('');
     const [playerColors, setPlayerColors] = useState<Record<string, string>>({});
+    const [colorWarning, setColorWarning] = useState(false);
 
     useEffect(() => setTitle('Setup'), [setTitle]);
 
@@ -52,10 +53,17 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
     };
 
     const handleColorChange = (playerName: string, color: string) => {
-        setPlayerColors((prevColors) => ({
-            ...prevColors,
-            [playerName]: color,
-        }));
+
+        const isColorAlreadySelected = Object.values(playerColors).includes(color);
+    
+        if (!isColorAlreadySelected || playerColors[playerName] === color) {
+            setPlayerColors((prevColors) => ({
+                ...prevColors,
+                [playerName]: color,
+            }));
+        } else {
+           setColorWarning(true);
+        }
     };
 
     return (
@@ -68,9 +76,33 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
                 open={showWarning}
                 autoHideDuration={2500}
                 onClose={() => setShowWarning(false)}
+                sx={{
+                    mt: '25%',
+                    border: '1px solid red',
+                    
+                }}
+            >
+                <Alert severity="warning" sx={{ width: '100%'}}>
+                    Choose 2 to 5 players.
+                </Alert>
+            </Snackbar>
+
+            <Snackbar
+                anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'center',
+                }}
+                open={colorWarning}
+                autoHideDuration={2500}
+                onClose={() => setColorWarning(false)}
+                sx={{
+                    mt: '25%',
+                    border: '1px solid red',
+                    
+                }}
             >
                 <Alert severity="warning" sx={{ width: '100%' }}>
-                    Choose 2 to 5 players.
+                    Players must choose different colors.
                 </Alert>
             </Snackbar>
 
@@ -85,7 +117,6 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
                     pb: 2,
                     mt: 6,
                     mb: 3,
-                    mr: 4,
                     bgcolor: '#042B61',
                     color: '#E8CD8A',
                     width: {
@@ -191,7 +222,7 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
                             {x.checked && (
                                 <Select
                                     value={playerColors[x.name] || ''}
-                                    onChange={(e) => handleColorChange(x.name, e.target.value as string)}
+                                    onChange={(e) => handleColorChange(x.name, e.target.value)}
                                     displayEmpty
                                 >
                                     <MenuItem value="" disabled>

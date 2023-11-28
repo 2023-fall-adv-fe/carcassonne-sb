@@ -94,7 +94,6 @@ const App = () => {
         setTitle={setTitle}
         previousPlayers={ getPreviousPlayers(gameResults) }
         setChosenPlayers={setChosenPlayers}
-
       />,
     },
     {
