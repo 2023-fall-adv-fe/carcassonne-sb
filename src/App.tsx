@@ -16,7 +16,7 @@ import React from 'react';
 import { SettingsOutlined } from '@mui/icons-material';
 
 import localForage from 'localforage';
-import { saveGameToCloud } from './tca-cloud-api';
+import { loadGamesFromCloud, saveGameToCloud } from './tca-cloud-api';
 
 // const dummyGameResults: GameResult[] = [
 //   {
@@ -64,12 +64,26 @@ const App = () => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const [emailAddress, setEmailAddress] = React.useState("");
+  const [emailAddressUpdatedCount, setEmailAddressUpdatedCount] = React.useState(0);
 
   useEffect(
     () => {
 
-        const loadEmail = async() => {
+        const init = async() => {
           if (!ignore) {
+
+            const email = await localForage.getItem<string>('email') ?? "";
+
+            if (email.length > 0) {
+              setEmailAddress(email);
+
+              const cloudGameResults = await loadGamesFromCloud(
+                email
+                , 'tca-carcassonne-sb-fall-2023'
+              );
+
+              setGameResults(cloudGameResults)
+            }
             setEmailAddress(
               await localForage.getItem<string>('email') ?? ""
             );
@@ -77,16 +91,16 @@ const App = () => {
         };
 
         let ignore = false;
-        loadEmail();
+        init();
 
-        return(
-          //return a cleanup lambda function...
-          () => {
-            ignore = true;
-          }
-        );
+    //     return(
+    //       //return a cleanup lambda function...
+    //       () => {
+    //         ignore = true;
+    //       }
+    //     );
     }
-     , []
+     , [emailAddressUpdatedCount]
   );
 
   const addNewGameResult = async (newGameResult: GameResult) => {
@@ -235,6 +249,7 @@ const App = () => {
           onClick={
             async () => {
               await localForage.setItem('email', emailAddress);
+              setEmailAddressUpdatedCount(emailAddressUpdatedCount + 1);
               setSettingsOpen(false)
             }
           } 
