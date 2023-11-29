@@ -162,7 +162,7 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
                     );
 
                     setNum(num + 1);
-                    navigate('/play');
+                    navigate('/play',{ state: { playerColors } });
                 }}
             >
                 Start the Game
@@ -228,11 +228,11 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
                                     <MenuItem value="" disabled>
                                         Select Color
                                     </MenuItem>
-                                    <MenuItem value="red">Red</MenuItem>
-                                    <MenuItem value="blue">Blue</MenuItem>
-                                    <MenuItem value="green">Green</MenuItem>
-                                    <MenuItem value="yellow">Yellow</MenuItem>
-                                    <MenuItem value="black">Black</MenuItem>
+                                    <MenuItem value="#d73b3e">Red</MenuItem>
+                                    <MenuItem value="#6495ed">Blue</MenuItem>
+                                    <MenuItem value="#8fbc8f">Green</MenuItem>
+                                    <MenuItem value="#fffacd">Yellow</MenuItem>
+                                    <MenuItem value="#A9A9A9">Black</MenuItem>
                                 </Select>
                             )}
                     </Grid>

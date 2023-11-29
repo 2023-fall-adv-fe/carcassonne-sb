@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { GameResult } from './game-results';
 import { FC, useState, useEffect } from 'react';
 import { Grid } from '@mui/material';
+import { useLocation } from 'react-router-dom';
 
 interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
@@ -11,10 +12,12 @@ interface PlayProps {
   chosenPlayers: string[];
 }
 
-export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers }) => {
+export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}) => {
   useEffect(() => setTitle('Play'), [setTitle]);
+  const location = useLocation();
 
   const nav = useNavigate();
+  const playerColors = location.state?.playerColors || {};
 
   const [startTimestamp,] = useState(new Date().toISOString());
   const [playerScores, setPlayerScores] = useState<{ [player: string]: number }>(
@@ -78,7 +81,7 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers 
       <h2>Scoreboard</h2>
 
       {chosenPlayers.map((x) => (
-        <Box key={x} boxShadow={2}>
+        <Box key={x} boxShadow={2} sx={{ backgroundColor: playerColors[x] || 'white' }}>
             <h3 style={{ textAlign: 'center', paddingTop: '10px'}}>{x} {playerScores[x]}</h3>
             <Grid display="flex" flexDirection="row" alignItems="center" justifyContent="center" textAlign="center" mb={2} pb={2} >
             <Grid pl={1} pr={1} >
