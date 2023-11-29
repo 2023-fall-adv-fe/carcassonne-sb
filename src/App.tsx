@@ -9,7 +9,7 @@ import {
   createHashRouter,
   RouterProvider,
 } from "react-router-dom";
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AppBar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, TextField, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts, getLeaderboardData, getPreviousPlayers } from './game-results';
 import React from 'react';
@@ -63,6 +63,30 @@ const App = () => {
   const fullScreen = useMediaQuery(theme.breakpoints.down('md'));
 
   const [emailAddress, setEmailAddress] = React.useState("");
+
+  useEffect(
+    () => {
+
+        const loadEmail = async() => {
+          if (!ignore) {
+            setEmailAddress(
+              await localForage.getItem<string>('email') ?? ""
+            );
+          }
+        };
+
+        let ignore = false;
+        loadEmail();
+
+        return(
+          //return a cleanup lambda function...
+          () => {
+            ignore = true;
+          }
+        );
+    }
+     , []
+  );
 
   const addNewGameResult = (newGameResult: GameResult) => setGameResults(
     [
