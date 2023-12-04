@@ -11,7 +11,7 @@ import {
 } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import { AppBar, Box, Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, IconButton, TextField, Toolbar, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { GameResult, GeneralGameTimeFactsDisplay, getGeneralGameTimeFacts, getLeaderboardData, getPreviousPlayers } from './game-results';
+import { GameResult, getGeneralGameTimeFacts, getLeaderboardData, getPreviousPlayers } from './game-results';
 import React from 'react';
 import { SettingsOutlined } from '@mui/icons-material';
 
