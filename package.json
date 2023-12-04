@@ -1,6 +1,7 @@
 {
   "name": "carcassonne-sb",
   "version": "0.1.0",
+  "homepage": "https://2023-fall-adv-fe.github.io/carcassonne-sb",
   "private": true,
   "dependencies": {
     "@aws-sdk/util-dynamodb": "^3.461.0",
