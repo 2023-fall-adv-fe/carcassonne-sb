@@ -84,87 +84,87 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}
         <Box key={x} boxShadow={2} sx={{ backgroundColor: playerColors[x] || 'white' }}>
             <h3 style={{ textAlign: 'center', paddingTop: '10px'}}>{x} {playerScores[x]}</h3>
             <Grid display="flex" flexDirection="row" alignItems="center" justifyContent="center" textAlign="center" mb={2} pb={2} >
-            <Grid pl={1} pr={1} >
-            <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Cities</p>
-                <Button
-                  variant="contained"
-                  color="success"
-                  size="small"
-                  onClick={() => handleScoreChange(x, 'cities', 1)}
-                >
-                  +
-                </Button>
-                
-                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{cityScores[x]}</p>
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="small"
-                  onClick={() => handleScoreChange(x, 'cities', -1)}
-                >
-                  -
-                </Button>      
-            </Grid>
-            <Grid  pl={1} pr={1}>
-            <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Roads</p>
-                <Button
-                  variant="contained"
-                  color="success"
-                  size="small"
-                  onClick={() => handleScoreChange(x, 'roads', 1)}
-                >
-                  +
-                </Button>
-                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{roadScores[x]}</p>
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="small"
-                  onClick={() => handleScoreChange(x, 'roads', -1)}
-                >
-                  -
-                </Button>      
-            </Grid>
-            <Grid  pl={1} pr={1}>
-            <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Cloisters</p>
-                <Button
-                  variant="contained"
-                  color="success"
-                  size="small"
-                  onClick={() => handleScoreChange(x, 'cloisters', 1)}
-                >
-                  +
-                </Button>
-                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{cloisterScores[x]}</p>
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="small"
-                  onClick={() => handleScoreChange(x, 'cloisters', -1)}
-                >
-                  -
-                </Button>      
-            </Grid>
-            <Grid  pl={1} pr={1}>
-            <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Farms</p>
-                <Button
-                  variant="contained"
-                  color="success"
-                  size="small"
-                  onClick={() => handleScoreChange(x, 'farms', 1)}
-                >
-                  +
-                </Button>
-                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{farmScores[x]}</p>
-                <Button
-                  variant="contained"
-                  color="error"
-                  size="small"
-                  onClick={() => handleScoreChange(x, 'farms', -1)}
-                >
-                  -
-                </Button>      
-            </Grid>
+                <Grid pl={1} pr={1} >
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Cities</p>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      size="small"
+                      onClick={() => handleScoreChange(x, 'cities', 1)}
+                    >
+                      +
+                    </Button>
+                    
+                    <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{cityScores[x]}</p>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      size="small"
+                      onClick={() => handleScoreChange(x, 'cities', -1)}
+                    >
+                      -
+                    </Button>      
+                </Grid>
+                <Grid  pl={1} pr={1}>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Roads</p>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      size="small"
+                      onClick={() => handleScoreChange(x, 'roads', 1)}
+                    >
+                      +
+                    </Button>
+                    <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{roadScores[x]}</p>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      size="small"
+                      onClick={() => handleScoreChange(x, 'roads', -1)}
+                    >
+                      -
+                    </Button>      
+                </Grid>
+                <Grid  pl={1} pr={1}>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Cloisters</p>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      size="small"
+                      onClick={() => handleScoreChange(x, 'cloisters', 1)}
+                    >
+                      +
+                    </Button>
+                    <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{cloisterScores[x]}</p>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      size="small"
+                      onClick={() => handleScoreChange(x, 'cloisters', -1)}
+                    >
+                      -
+                    </Button>      
+                </Grid>
+                <Grid  pl={1} pr={1}>
+                <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Farms</p>
+                    <Button
+                      variant="contained"
+                      color="success"
+                      size="small"
+                      onClick={() => handleScoreChange(x, 'farms', 1)}
+                    >
+                      +
+                    </Button>
+                    <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>{farmScores[x]}</p>
+                    <Button
+                      variant="contained"
+                      color="error"
+                      size="small"
+                      onClick={() => handleScoreChange(x, 'farms', -1)}
+                    >
+                      -
+                    </Button>      
+                </Grid>
             </Grid>
         </Box>
       ))}
