@@ -228,11 +228,11 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
                                     <MenuItem value="" disabled>
                                         Select Color
                                     </MenuItem>
-                                    <MenuItem value="#d73b3e">Red</MenuItem>
-                                    <MenuItem value="#6495ed">Blue</MenuItem>
-                                    <MenuItem value="#8fbc8f">Green</MenuItem>
-                                    <MenuItem value="#fffacd">Yellow</MenuItem>
-                                    <MenuItem value="#A9A9A9">Black</MenuItem>
+                                    <MenuItem value="#7C0A02">Red</MenuItem>
+                                    <MenuItem value="#0a2351">Blue</MenuItem>
+                                    <MenuItem value="#355E3B">Green</MenuItem>
+                                    <MenuItem value="#8A6700">Yellow</MenuItem>
+                                    <MenuItem value="#808080">Black</MenuItem>
                                 </Select>
                             )}
                     </Grid>

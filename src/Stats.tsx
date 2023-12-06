@@ -271,7 +271,7 @@ export const Stats: FC<StatsProps> = ({
                                 <TableRow>
                                     <TableCell>W</TableCell>
                                     <TableCell>L</TableCell>
-                                    <TableCell>AVG</TableCell>
+                                    <TableCell>Win %</TableCell>
                                     <TableCell>PLAYER</TableCell>
                                 </TableRow>
                             </TableHead>

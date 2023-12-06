@@ -78,12 +78,14 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}
 
   return (
     <>
-      <h2>Scoreboard</h2>
+      {/* <h2>Scoreboard</h2> */}
+
+      <h4 style={{textAlign: 'center'}}>Cities = 3 | Roads = 1 | Cloisters = 9 | Farms = 3</h4>
 
       {chosenPlayers.map((x) => (
         <Box key={x} boxShadow={2} sx={{ backgroundColor: playerColors[x] || 'white' }}>
-            <h3 style={{ textAlign: 'center', paddingTop: '10px'}}>{x} {playerScores[x]}</h3>
-            <Grid display="flex" flexDirection="row" alignItems="center" justifyContent="center" textAlign="center" mb={2} pb={2} >
+            <h2 style={{ textAlign: 'center', paddingTop: '10px', color: '#C3D2E1'}}>{x} {playerScores[x]}</h2>
+            <Grid display="flex" flexDirection="row" alignItems="center" justifyContent="center" textAlign="center" color="#C3D2E1" mb={2} pb={2} >
                 <Grid pl={1} pr={1} >
                 <p style={{ fontSize: '1.5rem', margin: '10px 0', textAlign: 'center' }}>Cities</p>
                     <Button
