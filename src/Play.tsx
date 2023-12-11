@@ -1,10 +1,8 @@
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import { useNavigate } from 'react-router-dom';
 import { GameResult } from './game-results';
 import { FC, useState, useEffect } from 'react';
-import { Grid } from '@mui/material';
 import { useLocation } from 'react-router-dom';
+import { Button, Box, Grid, Modal, Typography } from '@mui/material';
 
 interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
@@ -62,19 +60,58 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}
     }
   };
 
-  const endGame = () => {
+  const [winner, setWinner] = useState<string | null>(null);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
+
+    
+    nav(-2);
+  };
+
+  const endGame = async () => {
     // Find the player with the highest score
     const winner = Object.keys(playerScores).reduce((a, b) => (playerScores[a] > playerScores[b] ? a : b));
 
+    setWinner(winner);
+    
     addNewGameResult({
       winner: winner,
       players: chosenPlayers,
       start: startTimestamp,
       end: new Date().toISOString(),
+      
     });
 
-    nav(-2);
+    console.log("End Game Results:", {
+      winner: winner,
+      players: chosenPlayers,
+      start: startTimestamp,
+      end: new Date().toISOString(),
+      playerScores: playerScores,
+      cityScores: cityScores,
+      roadScores: roadScores,
+      cloisterScores: cloisterScores,
+      farmScores: farmScores,
+    });
+
+    handleOpenModal();
+
+    await new Promise((resolve) => setTimeout(resolve, 0));
+
+
   };
+
+  useEffect(() => {
+    if (openModal) {
+      // Perform any additional actions needed when the modal opens
+    }
+  }, [openModal]);
 
   return (
     <>
@@ -181,6 +218,35 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}
       >
         End Game
       </Button>
+      <Modal open={openModal} onClose={handleCloseModal}>
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: 400,
+            bgcolor: 'background.paper',
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Typography variant="h6" gutterBottom>
+            End Game Results
+          </Typography>
+          {chosenPlayers.map((player) => (
+            <div key={player}>
+              <Typography variant="body1">
+                {player}: {playerScores[player]}
+                {player === winner && ' (Winner)'}
+              </Typography>
+            </div>
+          ))}
+          <Button variant="contained" onClick={handleCloseModal}>
+            Close
+          </Button>
+        </Box>
+      </Modal>
     </>
   );
 };
