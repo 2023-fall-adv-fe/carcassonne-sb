@@ -109,16 +109,41 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}
 
   useEffect(() => {
     if (openModal) {
-      // Perform any additional actions needed when the modal opens
     }
   }, [openModal]);
 
   return (
     <>
-      {/* <h2>Scoreboard</h2> */}
+    <Box>
+      <Typography variant="h6" align="center" mt={2}>
+        In game scoring:
+      </Typography>
+      <Grid
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center"
+        pb={2}
+      >
+        Cities = 2 | Roads = 1 | Cloisters = 9
+      </Grid>
 
-      <h4 style={{textAlign: 'center'}}>Cities = 3 | Roads = 1 | Cloisters = 9 | Farms = 3</h4>
-
+      <Typography variant="h6" align="center">
+        End game scoring:
+      </Typography>
+      <Grid
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="center"
+        textAlign="center"
+        mb={2}
+        pb={2}
+      >
+        Cities/Roads/Cloisters = 1 | Farms = 3
+      </Grid>
+    </Box>
       {chosenPlayers.map((x) => (
         <Box key={x} boxShadow={2} sx={{ backgroundColor: playerColors[x] || 'white' }}>
             <h2 style={{ textAlign: 'center', paddingTop: '10px', color: '#C3D2E1'}}>{x} {playerScores[x]}</h2>

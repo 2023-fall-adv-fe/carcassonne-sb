@@ -296,6 +296,71 @@ export const Stats: FC<StatsProps> = ({
 
 
 
+                <Grid
+                    xs={12}
+                    md={6}
+                >
+                    <Paper
+                        elevation={3}
+                        sx={{
+                            overflow: 'hidden'
+                            , height: '100%'
+                        }}
+                    >
+                        <Typography
+                            sx={{
+                                fontSize: 20
+                                , ml: 3
+                                , mt: 3
+                                , mb: 3
+                            }}
+                            color='text.disabled'
+                            gutterBottom
+                        >
+                            AVERAGE POINTS
+                        </Typography>
+                        <Box
+                        sx={{
+                            pl: 1
+                            , pr: 1
+                        }}
+                    >
+                        <Table
+                            sx={{
+                                mt: 0
+                            }}
+                        >
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Winners</TableCell>
+                                    <TableCell>Cities</TableCell>
+                                    <TableCell>Roads</TableCell>
+                                    <TableCell>Cloisters</TableCell>
+                                    <TableCell>Farms</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {
+                                    leaderboard.map(x => (
+                                        <TableRow
+                                            key={x.name}
+                                        >
+                                            <TableCell></TableCell>
+                                            <TableCell></TableCell>
+                                            <TableCell></TableCell>
+                                            <TableCell></TableCell>
+                                            <TableCell></TableCell>
+                                        </TableRow>
+                                    ))
+                                }
+                            </TableBody>
+                        </Table>
+                    </Box>
+                    </Paper>
+                </Grid>
+
+
+
             </Grid>
         </>
     );
