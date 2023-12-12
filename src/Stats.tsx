@@ -296,7 +296,7 @@ export const Stats: FC<StatsProps> = ({
 
 
 
-                <Grid
+                {/* <Grid
                     xs={12}
                     md={6}
                 >
@@ -357,7 +357,7 @@ export const Stats: FC<StatsProps> = ({
                         </Table>
                     </Box>
                     </Paper>
-                </Grid>
+                </Grid> */}
 
 
 

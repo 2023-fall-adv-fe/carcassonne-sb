@@ -244,34 +244,40 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}
         End Game
       </Button>
       <Modal open={openModal} onClose={handleCloseModal}>
-        <Box
-          sx={{
-            position: 'absolute',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 400,
-            bgcolor: 'background.paper',
-            boxShadow: 24,
-            p: 4,
-          }}
-        >
-          <Typography variant="h6" gutterBottom>
-            End Game Results
-          </Typography>
-          {chosenPlayers.map((player) => (
-            <div key={player}>
-              <Typography variant="body1">
-                {player}: {playerScores[player]}
-                {player === winner && ' (Winner)'}
+          <Box
+            sx={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -50%)',
+              maxWidth: '100vw',
+              maxHeight: '100vh',
+              width: 'auto',
+              bgcolor: 'background.paper',
+              boxShadow: 24,
+              p: 2,
+              overflow: 'auto',
+            }}
+          >
+              <Typography variant="h6" gutterBottom>
+                End Game Results:
               </Typography>
-            </div>
-          ))}
-          <Button variant="contained" onClick={handleCloseModal}>
-            Close
-          </Button>
-        </Box>
+              {chosenPlayers.map((player) => (
+                <div key={player}>
+                  <Typography
+                     variant="body1"
+                     >
+                    {player}: {playerScores[player]}
+                    {player === winner && ' (Winner)'}
+                  </Typography>
+                </div>
+              ))}
+              <Button variant="contained" sx={{mt: 2}} onClick={handleCloseModal}>
+                Close
+              </Button>
+          </Box>
       </Modal>
+
     </>
   );
 };
