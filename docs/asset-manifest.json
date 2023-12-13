@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/carcassonne-sb/static/css/main.073c9b0a.css",
-    "main.js": "/carcassonne-sb/static/js/main.bf1e54d8.js",
+    "main.js": "/carcassonne-sb/static/js/main.8439c881.js",
     "static/js/787.3321e54f.chunk.js": "/carcassonne-sb/static/js/787.3321e54f.chunk.js",
     "index.html": "/carcassonne-sb/index.html",
     "main.073c9b0a.css.map": "/carcassonne-sb/static/css/main.073c9b0a.css.map",
-    "main.bf1e54d8.js.map": "/carcassonne-sb/static/js/main.bf1e54d8.js.map",
+    "main.8439c881.js.map": "/carcassonne-sb/static/js/main.8439c881.js.map",
     "787.3321e54f.chunk.js.map": "/carcassonne-sb/static/js/787.3321e54f.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.073c9b0a.css",
-    "static/js/main.bf1e54d8.js"
+    "static/js/main.8439c881.js"
   ]
 }

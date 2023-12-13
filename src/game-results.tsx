@@ -117,7 +117,6 @@ export const calculateAverages = (results: GameResult[]): {
 } => {
     try {
         const validResults = results.filter(result => {
-            // Check if the necessary properties are present
             return (
                 result.winner &&
                 result.playerScores &&

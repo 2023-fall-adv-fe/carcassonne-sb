@@ -119,6 +119,9 @@ export const Setup: FC<SetupProps> = ({ num, setNum, setTitle, previousPlayers, 
                     mb: 3,
                     bgcolor: '#042B61',
                     color: '#E8CD8A',
+                    "&:hover": {
+                        bgcolor: '#042B61',
+                    },
                     width: {
                         xs: '100%',
                         md: 'inherit',
