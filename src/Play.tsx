@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { GameResult } from './game-results';
+import { GameResult, calculateAverages } from './game-results';
 import { FC, useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Button, Box, Grid, Modal, Typography } from '@mui/material';
@@ -8,9 +8,10 @@ interface PlayProps {
   addNewGameResult: (r: GameResult) => void;
   setTitle: (t: string) => void;
   chosenPlayers: string[];
+  gameResults: GameResult[];
 }
 
-export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}) => {
+export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers, gameResults}) => {
   useEffect(() => setTitle('Play'), [setTitle]);
   const location = useLocation();
 
@@ -85,7 +86,11 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}
       players: chosenPlayers,
       start: startTimestamp,
       end: new Date().toISOString(),
-      
+      playerScores: { ...playerScores },
+      cityScores: { ...cityScores },
+      roadScores: { ...roadScores },
+      cloisterScores: { ...cloisterScores },
+      farmScores: { ...farmScores },
     });
 
     console.log("End Game Results:", {
@@ -99,6 +104,24 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle, chosenPlayers}
       cloisterScores: cloisterScores,
       farmScores: farmScores,
     });
+
+
+    const averages = calculateAverages([
+      ...gameResults,
+      {
+          winner,
+          players: chosenPlayers,
+          start: startTimestamp,
+          end: new Date().toISOString(),
+          playerScores: playerScores || {},
+          cityScores: cityScores || {},
+          roadScores: roadScores || {},
+          cloisterScores: cloisterScores || {},
+          farmScores: farmScores || {}
+        },
+    ]);
+  
+    console.log("Averages:", averages);
 
     handleOpenModal();
 

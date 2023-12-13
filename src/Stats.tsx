@@ -21,12 +21,20 @@ interface StatsProps {
     //winningPercentageDisplay: WinningPercentageDisplay
     generalGameTimeFacts: GeneralGameTimeFactsDisplay
     leaderboard: LeaderboardEntry[];
+    averages: {
+        averageWinnerScore: number;
+        averageCityScore: number;
+        averageRoadScore: number;
+        averageCloisterScore: number;
+        averageFarmScore: number;
+      };
 }
 
 export const Stats: FC<StatsProps> = ({
     //winningPercentageDisplay
     generalGameTimeFacts
     , leaderboard
+    , averages
 }) => {
 
     const navigate = useNavigate();
@@ -123,28 +131,6 @@ export const Stats: FC<StatsProps> = ({
                                         </Typography>
                                     </TableCell>
                                 </TableRow>
-                                {/* <TableRow
-                                    sx={{
-                                        '&:last-child td, &:last-child th': {
-                                            border: 0,
-                                        }
-                                    }}
-                                >
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            Winning %
-                                        </Typography>
-                                    </TableCell>
-                                    <TableCell>
-                                        <Typography
-                                            fontSize={20}
-                                        >
-                                            {winningPercentageDisplay.winningPercentage}
-                                        </Typography>
-                                    </TableCell>
-                                </TableRow>                         */}
                                 <TableRow
                                     sx={{
                                         '&:last-child td, &:last-child th': {
@@ -189,7 +175,6 @@ export const Stats: FC<StatsProps> = ({
                                         <Typography
                                             fontSize={20}
                                         >
-                                            {/* {generalGameTimeFacts.shortestGame} */}
                                             {
                                                 generalGameTimeFacts.totalGames > 0
                                                 ? generalGameTimeFacts.shortestGame
@@ -216,7 +201,6 @@ export const Stats: FC<StatsProps> = ({
                                         <Typography
                                             fontSize={20}
                                         >
-                                            {/* {generalGameTimeFacts.longestGame} */}
                                             {
                                                 generalGameTimeFacts.totalGames > 0
                                                 ? generalGameTimeFacts.longestGame
@@ -269,10 +253,10 @@ export const Stats: FC<StatsProps> = ({
                         >
                             <TableHead>
                                 <TableRow>
+                                    <TableCell>PLAYER</TableCell>
                                     <TableCell>W</TableCell>
                                     <TableCell>L</TableCell>
                                     <TableCell>Win %</TableCell>
-                                    <TableCell>PLAYER</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -281,10 +265,10 @@ export const Stats: FC<StatsProps> = ({
                                         <TableRow
                                             key={x.name}
                                         >
+                                            <TableCell>{x.name}</TableCell>
                                             <TableCell>{x.wins}</TableCell>
                                             <TableCell>{x.losses}</TableCell>
                                             <TableCell>{x.avg.toFixed(3)}</TableCell>
-                                            <TableCell>{x.name}</TableCell>
                                         </TableRow>
                                     ))
                                 }
@@ -296,7 +280,7 @@ export const Stats: FC<StatsProps> = ({
 
 
 
-                {/* <Grid
+                <Grid
                     xs={12}
                     md={6}
                 >
@@ -317,7 +301,7 @@ export const Stats: FC<StatsProps> = ({
                             color='text.disabled'
                             gutterBottom
                         >
-                            AVERAGE POINTS
+                            AVG POINTS
                         </Typography>
                         <Box
                         sx={{
@@ -330,34 +314,126 @@ export const Stats: FC<StatsProps> = ({
                                 mt: 0
                             }}
                         >
-                            <TableHead>
-                                <TableRow>
-                                    <TableCell>Winners</TableCell>
-                                    <TableCell>Cities</TableCell>
-                                    <TableCell>Roads</TableCell>
-                                    <TableCell>Cloisters</TableCell>
-                                    <TableCell>Farms</TableCell>
-                                </TableRow>
-                            </TableHead>
                             <TableBody>
-                                {
-                                    leaderboard.map(x => (
-                                        <TableRow
-                                            key={x.name}
+                                <TableRow>
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
                                         >
-                                            <TableCell></TableCell>
-                                            <TableCell></TableCell>
-                                            <TableCell></TableCell>
-                                            <TableCell></TableCell>
-                                            <TableCell></TableCell>
-                                        </TableRow>
-                                    ))
-                                }
+                                            Winners
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            {
+                                                averages.averageWinnerScore.toFixed(2)
+                                            }
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow>
+                                <TableRow
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        }
+                                    }}
+                                >
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            Cities
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            {
+                                                averages.averageCityScore.toFixed(2)
+                                            }
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow> 
+                                <TableRow
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        }
+                                    }}
+                                >
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            Roads
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            {
+                                               averages.averageRoadScore.toFixed(2)
+                                            }
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow> 
+                                <TableRow
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        }
+                                    }}
+                                >
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            Cloisters
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            {
+                                                averages.averageCloisterScore.toFixed(2)
+                                            }
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow> 
+                                <TableRow
+                                    sx={{
+                                        '&:last-child td, &:last-child th': {
+                                            border: 0,
+                                        }
+                                    }}
+                                >
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            Farms
+                                        </Typography>
+                                    </TableCell>
+                                    <TableCell>
+                                        <Typography
+                                            fontSize={20}
+                                        >
+                                            {
+                                               averages.averageFarmScore.toFixed(2)
+                                            }
+                                        </Typography>
+                                    </TableCell>
+                                </TableRow> 
                             </TableBody>
                         </Table>
                     </Box>
                     </Paper>
-                </Grid> */}
+                </Grid>
 
 
 
